@@ -1,0 +1,76 @@
+@charset "UTF-8";
+.search {
+	max-width: 768px;
+	width: 100%;
+	margin: 0 auto;
+}
+.inner-section {
+    display: flex;
+}
+
+.slider_aside {
+    width: 50px;
+}
+
+.slider_box {
+    width: 720px;
+    overflow: hidden;   /* 영역을 벗어나는 내용은 숨겨라 */
+}
+.slider_list {
+    display: flex;
+    width: 3600px;      /* 모든 아이템의 너비 */
+}
+.slider_content {
+    width: 720px;
+    height: 370px;
+    text-align: center;
+    user-select: none;
+}
+.search-name, .search-date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.search-btn {
+    color: #dcdcdc;
+    background-color: #e6e6e6;
+    border-style: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17pt;
+    padding: 10px 22px;
+    margin: 0;
+    border-radius: 5px;
+}
+/* .search-btn:hover { */
+/*     color: #fff; */
+/*     background-color: #db074a; */
+/* } */
+.search-wrap .search-name {
+    position: relative;
+    border-radius: 5px;
+    background-color: #f8f8f9;
+    padding: 10px;
+    justify-content: center;
+
+}
+.search-wrap .search-date {
+    position: relative;
+    border-radius: 5px;
+    background-color: #f8f8f9;
+    padding: 10px;
+}
+.search-wrap .icon {
+    margin: 5px;
+}
+.search-wrap .icon img {
+    width: 18px;
+}
+.search-input input {
+    width: 95%;
+    border-style: none;
+    background-color: #f8f8f9;
+}
+.search-input input:focus {
+    outline:none;
+}

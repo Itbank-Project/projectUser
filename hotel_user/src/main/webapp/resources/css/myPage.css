@@ -1,0 +1,26 @@
+.myPage {
+	max-width: 768px;
+	width: 768px;
+	margin: 0 auto;
+}
+
+.myPage_login0 {
+	margin-top: 100px;
+}
+
+.myPage_loginO_content {
+	height: 30px;
+	margin-left: 50px;
+	margin-right: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+
+.res_content {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 50px;
+	margin-right: 50px;
+}
