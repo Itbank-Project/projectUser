@@ -31,21 +31,6 @@
     align-items: center;
     margin-bottom: 10px;
 }
-.search-btn {
-    color: #dcdcdc;
-    background-color: #e6e6e6;
-    border-style: none;
-    cursor: pointer;
-    width: 100%;
-    font-size: 17pt;
-    padding: 10px 22px;
-    margin: 0;
-    border-radius: 5px;
-}
-/* .search-btn:hover { */
-/*     color: #fff; */
-/*     background-color: #db074a; */
-/* } */
 .search-wrap .search-name {
     position: relative;
     border-radius: 5px;
@@ -73,4 +58,42 @@
 }
 .search-input input:focus {
     outline:none;
+}
+.search_result {
+	max-width: 768px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.hotel-section {
+	display: block;
+	margin-top: 20px;
+}
+
+.hotel-section-img {
+	width: 720px;
+	height: 150px;
+	overflow-y: hidden;
+}
+
+.hotel-section-info-outer {
+	background-color: white;
+}
+
+.hotel-section-info {
+	/* margin: 10px 0 0 10px; */
+	background-color: white;
+}
+
+.hotel-section-info div {
+	/* margin: 10px 0; */
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.hotel-list-scroll {
+	width: 720px;
+	height: 800px;
+	overflow: scroll;
+	margin: 0 auto;
 }

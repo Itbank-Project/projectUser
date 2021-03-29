@@ -331,20 +331,27 @@ border-radius: 40px;
     text-align: left;
     }
 .modal > div {
-    width: 1200px;
+    width: 700px;	/*변경*/
     margin: auto;
     margin-bottom:0 ;
     margin-top: 0;
     
 }
-
+.reservation {
+	text-align: right;
+	
+}
+.reservation  input {
+	width: 198px;
+	border-radius: 3px;
+}
 .modal .top {
     display: flex;
     position: relative;
     justify-content: space-between;
     padding: 0px 24px 0;
     height: 124px;
-    margin-top: 60px;
+    margin-top: 20px;	/*변경*/
    
 }
 .modal .top  .tt {

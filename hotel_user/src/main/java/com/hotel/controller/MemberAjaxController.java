@@ -22,17 +22,7 @@ public class MemberAjaxController {
 
 	@Autowired private MemberService ms;
 	@Autowired private MailService mailService;
-	
-	// 로그인
-	@PostMapping(value = "login", produces = "application/json;charset=utf8")
-	public String login(@RequestBody MemberDTO dto , HttpSession session) {
-		System.out.println(dto.getCu_id());
-		System.out.println(dto.getCu_pw());
-		MemberDTO login = ms.getMember(dto);
-		session.setAttribute("login", login);
-		System.out.println(login);
-		return login != null ? "로그인" : "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다." ;
-	}
+
 	
 	// 회원 정보 수정
 	@PutMapping(value = "modify", consumes = "application/json;charset=utf8")

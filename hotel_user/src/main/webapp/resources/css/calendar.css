@@ -11,8 +11,8 @@
     justify-content: space-between;
 }
 #calendar {
-    width: 1200px;
-    height: 500px;
+    width: 700px;	/*변경*/
+    height: 441px;
     border: 1px solid black;
 }
 #calendar-left {

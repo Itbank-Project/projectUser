@@ -43,28 +43,44 @@
 			<div class="inner-section">
 				<div style="height: 50px;"></div>
 			</div>
-			<div class="inner-section">
-				<div class="slider_aside"></div>
-				<div class="hotel-list" style="width: 720px;">
-					<div class="hotel-list-top">
-						<div
-							style="font-weight: bold; font-size: larger; margin-bottom: 10px; color: rgb(77, 77, 77);">호캉스
-							절호의 기회</div>
-					</div>
-					<div
-						style="justify-content: space-between; display: flex; width: 720px; color: rgb(102, 102, 102); font-size: 14px; margin-bottom: 20px;">
-						<div>'HotelJava'만의 특가를 놓치지 마세요</div>
-					</div>
-					<div>
-						<div>
-							<a href="${cpath }/hotel"><img
-								src="https://i.pinimg.com/564x/b9/92/97/b99297eef4f6006c975f8375d7a1459f.jpg"
-								alt="" style="width: 720px;"></a>
-						</div>
+			<div class="inner-section block">
+				<div class="hotel-list-top">
+					<div style="font-weight: bold; font-size: larger; margin-bottom: 10px; color: rgb(77, 77, 77);">
+						호캉스 절호의 기회
 					</div>
 				</div>
-				<div class="slider_aside"></div>
+				<div style="color: rgb(102, 102, 102); font-size: 14px; margin-bottom: 20px;">
+					<div>'HotelJava'만의 특가를 놓치지 마세요</div>
+				</div>
 			</div>
+			
+			
+			<div class="slideshow-container">
+				<c:forEach var="map" items="${map.list}">
+					<div class="mySlides fade">
+				        <div><a href="${cpath }/hotelView/${map.HO_NAME}/"><img src="http://182.212.181.172:9000/${map.HO_UPLOADFILE}" style="width:720px;"></a></div>
+				        <div style="font-size: 15pt; color: #717171;  text-align: center; margin-top: 5px;">${map.HO_NAME}</div>
+			      	</div>
+				</c:forEach>
+				
+				<!-- Next and previous buttons -->
+			    <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
+			    <a class="next" onclick="moveSlides(1)">&#10095;</a>
+			      
+			</div>
+			
+			
+			
+			<!-- The dots/circles -->
+		    <div style="text-align:center; margin-top: 40px;">
+		    	<c:forEach begin="0" end="${map.list_length }" var="i">
+		      		<span class="dot" onclick="currentSlide(${i})"></span>
+		      	</c:forEach>
+		    </div>
+	
+	
+	
+	
 			<div class="inner-section">
 				<div style="height: 50px;"></div>
 			</div>
@@ -95,36 +111,18 @@
 		</div>
 		<div class="aside"></div>
 	</div>
-
 	<script src="${cpath }/resources/js/submenu.js"></script>
 	<script src="${cpath }/resources/js/slider.js"></script>
-	<script src="${cpath }/resources/js/calendar.js"></script>
-
-	<script
-		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-
-	<script>
-		// 모달창을 이용한 아래에서 위로
-		$('.js-click-modal').click(function() {
-			$('.container').addClass('modal-open');
-		});
-
-		$('.js-close-modal').click(function() {
-			$('.container').removeClass('modal-open');
-		});
-	</script>
-
 	<script type="text/javascript">
-		// 달력
-		buildCalendar();
+		
 	</script>
-	
 	<script>
 		// footer 해당 메뉴 페이지 접근시 글자색 변경
 		const itemList = document.querySelectorAll('#footer-text');
 		
 		itemList.forEach(tr => tr.style.color='rgb(146, 146, 146)');
 		itemList[0].style.color='rgb(219, 7, 74)';
+		
 	</script>
 	
 	<script>
@@ -137,5 +135,63 @@
 		pinkIcon[0].classList.remove('hidden');
 	</script>
 	
+	
+	<script>
+		// 호텔 이미지 슬라이드
+	
+        var slideIndex = 0; //slide index
+
+		// HTML 로드가 끝난 후 동작
+		window.onload=function(){
+		  showSlides(slideIndex);
+		
+		  // Auto Move Slide
+		  var sec = 3000;
+		  setInterval(function(){
+		    slideIndex++;
+		    showSlides(slideIndex);
+		
+		  }, sec);
+		}
+		
+		
+		// Next/previous controls
+		function moveSlides(n) {
+		  slideIndex = slideIndex + n
+		  showSlides(slideIndex);
+		}
+		
+		// Thumbnail image controls
+		function currentSlide(n) {
+		  slideIndex = n;
+		  showSlides(slideIndex);
+		}
+		
+		function showSlides(n) {
+		
+		  var slides = document.getElementsByClassName("mySlides");
+		  var dots = document.getElementsByClassName("dot");
+		  var size = slides.length;
+		
+		  if ((n+1) > size) {
+		    slideIndex = 0; n = 0;
+		  }else if (n < 0) {
+		    slideIndex = (size-1);
+		    n = (size-1);
+		  }
+		
+		  for (i = 0; i < slides.length; i++) {
+		      slides[i].style.display = "none";
+		  }
+		  for (i = 0; i < dots.length; i++) {
+		      dots[i].className = dots[i].className.replace(" active", "");
+		  }
+		
+		  slides[n].style.display = "block";
+		  dots[n].className += " active";
+		}
+
+
+    </script>
 </body>
 </html>

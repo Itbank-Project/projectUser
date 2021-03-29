@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="${cpath }/resources/css/footer.css">
 	<body>
-		<div style="width: 750px; margin: 0 auto;">
+		<div style="width: 768px; margin: 0 auto;">
 			<div class="footer-fixed">
 				<div class="footer-item">
 					<div class="footer-item-inner">

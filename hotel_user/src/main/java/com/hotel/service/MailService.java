@@ -2,6 +2,7 @@ package com.hotel.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -16,13 +17,18 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotel.member.Hash;
+import com.hotel.reservation.ReservationDAO;
+import com.hotel.reservation.ReservationDTO;
 
 @Service
 public class MailService {
 
+	@Autowired private ReservationDAO dao;
+	
 	// 12자리 인증번호 만들기
 	public String getAuthNumber() {
 		int index = 0;
@@ -115,6 +121,110 @@ public class MailService {
 		} else { // 예외가 발생하면 예외 문구를 반환한다
 			return result;
 		}
+	}
+
+	// 메일안에 보낼 body내용 (예약내역)
+	public String reservationInfoCheck(String ad_email, HttpSession session) throws FileNotFoundException {
+		
+		// 예약 idx값을 같이넘겨줘야함
+		int maxIDX = dao.selectIDX();
+		ReservationDTO infoRes = dao.selectOneReservation(maxIDX);
+		
+		// 결제금액 천단위씩 자르기
+		String re_payment = String.format("%,d", infoRes.getRe_payment());
+		
+		// int -> String
+		String re_idx = Integer.toString(infoRes.getRe_idx());
+		String re_dayCount = Integer.toString(infoRes.getRe_daycount());
+
+		// 날짜 뒤에 시간 자르기
+		String indate = infoRes.getRe_indate().split(" ")[0];
+		String outdate = infoRes.getRe_outdate().split(" ")[0];
+				
+				
+		String info = 
+				"호텔 이름 : %s\n"
+				+ "결제 날짜 : %s\n"
+				+ "체크인 : %s\n"
+				+ "체크아웃 : %s\n"
+				+ "박수 : %s\n"
+				+ "예약자 이름 : %s\n"
+				+ "예약자 전화번호 : %s\n"
+				+ "객실 타입 : %s\n"
+				+ "결제 금액 : %s원\n";
+
+		info = String.format(info, infoRes.getHo_name(),infoRes.getRe_paydate(), indate,
+				outdate, re_dayCount, infoRes.getCu_name(),infoRes.getCu_pnum(),
+				infoRes.getRo_roomType(),re_payment);
+		
+		String filePath = session.getServletContext().getRealPath("/WEB-INF/data/mailAccount.dat");
+		File f = new File(filePath);
+		if (f.exists() == false) {
+			return "메일 전송에 필요한 계정 정보를 찾을 수 없습니다";
+		}
+		Scanner sc = new Scanner(f);
+		String account = null;
+		while (sc.hasNextLine()) {
+			account = sc.nextLine();
+		}
+		sc.close();
+		
+		session.setAttribute("info", info); // 세션에 예약정보 저장
+
+		String result = sendMailInfo(ad_email, info, account);
+		if (result.equals("메일보내짐")) { // 메일이 정상적으로 발송되었을 경우
+			return "예약이 완료되었습니다";
+		} else { // 예외가 발생하면 예외 문구를 반환한다
+			return result;
+		}
+	}
+
+	// 예약내역 보내기
+	private String sendMailInfo(String ad_email, String info, String account) {
+		String host = "smtp.naver.com";
+		final String username = account.split("/")[0];
+		final String password = account.split("/")[1];
+		int port = 465;
+		
+		String subject = "[HOTEL JAVA] 예약 내역";
+		String body = info;
+		
+		// 메일을 보내는 서버에 대한 인증과 속성을 설정한다 (smtp)
+		Properties props = System.getProperties();
+		
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.ssl.enable", "true");
+		props.put("mail.smtp.trust", host);
+		
+		// 속성 + 인증(id, pw)을 이용하여 세션을 생성
+		Session mailSession = Session.getDefaultInstance(props, new Authenticator() {
+			String un = username;
+			String pw = password;
+			
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(un, pw);
+			}
+		});
+		// 세션에 대한 처리내용을 콘솔에 출력할 수 있도록 debug를 활성화
+		mailSession.setDebug(true);
+		
+		// 메일의 전반적인 내용을 설정 (보내는 사람, 받는 사람, 제목, 내용)
+		Message mimeMessage = new MimeMessage(mailSession);	// 
+		
+		try {
+		mimeMessage.setFrom(new InternetAddress(username + "@naver.com"));
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(ad_email));
+		mimeMessage.setSubject(subject);
+		mimeMessage.setText(body);
+		Transport.send(mimeMessage);
+		} catch(AddressException e) {
+			return "주소가 잘못되었습니다";
+		} catch(MessagingException e) {
+			return "주소를 전송할 수 없습니다";
+		}
+		return "메일보내짐";
 	}
 	
 }

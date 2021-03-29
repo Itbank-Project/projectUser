@@ -38,8 +38,7 @@
 			font-size: 16pt;
 			font-weight: bold;
 		}
-
-		.modal {
+		.modal_findPw {
             position: fixed;
             top: 0;
             left: 0;
@@ -55,7 +54,7 @@
             height: 100%;
             position: absolute;
         }
-        .modal_content {
+        .modal_findPw_content {
             background-color: white;
             padding: 20px 50px;
             text-align: center;
@@ -102,9 +101,9 @@
 
 
 <!-- 비밀번호 재 설정 폼 -->
-    <div class="modal hidden">
+    <div class="modal_findPw hidden">
         <div class="modal_overlay"></div>   <!--나머지 배경 어둡게 만드는 영역-->
-        <div class="modal_content">         <!--표시하고 싶은 내용-->
+        <div class="modal_findPw_content">         <!--표시하고 싶은 내용-->
             <h2>비밀번호 재설정</h2>
             <div>
                 <form id="modifyPwForm">
@@ -136,6 +135,7 @@
 			
 			for(const [key,value] of formData.entries()){
 				ob[key] = value;
+				console.log(ob);
 			}
 			
 			const url = cpath + '/sendMail';
@@ -165,11 +165,12 @@
 		// 인증 번호 일치하는지 확인
 		const authForm = document.getElementById('authForm');
 		
-		const modal = document.querySelector('.modal');
+		const modal_findPw = document.querySelector('.modal_findPw');
 		const closeBtn = document.getElementById('close');
 		
 		const authCheckHandler = function(event){
 			event.preventDefault();
+			console.log(authForm);
 			const number = document.getElementById('authNumber').value;
 			const url = cpath + '/authCheck/' + number +'/';
 			const opt = {
@@ -179,7 +180,7 @@
 			.then(resp => resp.text())
 			.then(text => {
 				if(text === 'true'){	// 인증번호가 일치할 경우 비밀번호 재 설정 폼 띄우기
-        			modal.classList.remove('hidden');
+					modal_findPw.classList.remove('hidden');
 				}
 				else{	// 인증번호가 틀렸을 경우 번호입력칸 비우기
 					alert('인증번호가 일치하지 않습니다.');
@@ -193,9 +194,8 @@
 		const modifyPwForm = document.getElementById('modifyPwForm');
 		
         closeBtn.onclick = function() {
-            modal.classList.add('hidden');
+        	modal_findPw.classList.add('hidden');
         }
-
         // 비밀번호 유효성 검사
         modifyPwForm.onsubmit = function(event){
         	event.preventDefault();
@@ -206,7 +206,6 @@
     		const pattern2 = /[a-z]/;
     		const pattern3 = /[A-Z]/;
     		const pattern4 = /[~!@\#$%<>^&*]/; 
-
     		const formData = new FormData(modifyPwForm);
 			const ob = {};
 			
@@ -219,7 +218,6 @@
     			alert('비밀번호가 일치하지 않습니다.');
     			return false;
     		}
-
     		//  비밀번호는 8글자 이상 문자, 숫자, 특수문자 각1개씩 포함한지 확인
     		if (!pattern1.test(userpw) || !pattern2.test(userpw) || !pattern3.test(userpw)
     					|| !pattern4.test(userpw) || userpw.length<8||userpw.length>50) {

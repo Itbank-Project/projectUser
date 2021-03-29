@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="cpath">${pageContext.request.contextPath }</c:set> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,28 +55,25 @@
 <body>
 <div>
     <div class="back">
-        <a href="hotel.html"><img src="arrow.jpg"></a>
+        <a href="${cpath }/hotelView/${dto.ho_name}/"><img src="${cpath }/resources/img/arrow.jpg"></a>
         <h1>판매자 정보</h1>
     </div>
 
     <div id="hotel-owner">
-    <strong>사업자등록번호</strong>
-    <p>604-88-00718</p>
+    <strong>호텔명</strong>
+    <p>${dto.ho_name }</p>
 
-    <strong>상호명</strong>
-    <p>(주)빌더스개발에이엠씨</p>
+    <strong>관리자</strong>
+    <p>${dto.ad_name }</p>
 
-    <strong>대표자</strong>
-    <p>심태형</p>
-
-    <strong>사업장 소재지</strong>
-    <p>강원도 강릉시 해안로 476(강문동)</p>
+    <strong>호텔 주소</strong>
+    <p>${dto.ho_address }</p>
 
     <strong>전화번호</strong>
-    <p>0339232000</p>
+    <p>${dto.ho_pnum }</p>
 
-    <strong>전자우편번호</strong>
-    <p>sungwook1006@gmail.com</p>
+    <strong>이메일</strong>
+    <p>${dto.ad_email }</p>
     </div>
 
 </div>

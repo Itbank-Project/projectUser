@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+        body, div {
+            margin: 0;
+        }
+
+        .footer-fixed {
+            display: flex;
+            position: fixed;
+            /* z-index: 50; */
+            bottom: 0;
+            flex-direction: row;
+            border-top: 1px solid rgb(231, 231, 231);
+            background-color: rgb(255, 255, 255);
+            padding-bottom: 0;
+            max-width: 768px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 45px;
+            padding-bottom: 6px;
+            margin: 0 60px;
+        }
+
+        .footer-item-inner {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .reservation-btn {
+            background-color: #db074a;
+            color: white;
+            width: 730px;
+            font-size: 12pt;
+            border-radius: 3px;
+            padding: 12px 3px;
+            margin-top: 5px;
+        }
+
+        .room-img, .ad-img {
+            width: 720px;
+        }
+
+        .root {
+            width: 768px;
+            height: 100%;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inner-section {
+            width: 720px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .bottom {
+            border-bottom: 1px solid #dadada;
+        }
+
+        .blank {
+            height: 30px;
+        }
+
+        .margin-top {
+            margin-top: 30px;
+        }
+
+        .price-wrapper {
+            font-size: 10pt;
+            margin-bottom: 15px;
+        }
+
+        .price-wrapper span {
+            padding: 0 5px;
+        }
+
+        .cancel-reservation {
+            background-color: #f2faf9;
+            color: #5ac4cd;
+            font-size: 10pt;
+            width: 230px;
+            padding: 5px 0;
+            margin-left: 20%;
+        }
+
+        .info-wrapper {
+            font-size: 13pt;
+            margin-bottom: 15px;
+            color: #4b4b4b;
+        }
+
+        .check-inout {
+            width: 50%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.64;
+        }
+
+        .park-font {
+            font-size: 10pt;
+            color: #6b6b6b;
+        }
+
+        .item-width {
+            width: 360px;
+        }

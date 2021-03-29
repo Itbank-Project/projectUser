@@ -1,0 +1,222 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.kakao_share {
+
+}
+
+.img_wrap img{
+    display: block;
+    width: 100%;
+}
+
+.display_none {
+    display: none !important;
+}
+
+/*event css*/
+
+#section-bingo {
+    background-color: #ffe49c;
+    padding: 30px;
+    display: block;
+    position: relative;
+}
+
+.box_wrap{
+    box-shadow: 2.8px 6.4px 10px 0 rgba(81, 81, 81, 0.32);
+    background-color: #ffba00;;
+    padding: 25px;
+}
+.box{
+    border: 5px solid #535353;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.item {
+    display: block;
+    width: 33.33%;
+    position: relative;
+}
+
+.item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.img_complete {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+  #root {
+    position: relative;
+    overflow-x: hidden;
+  }
+  .header {
+    display: none;
+    position:fixed;
+    z-index:10;
+    top:0;
+    left:0;
+    right:0;
+    height:44px;
+    background:#fff;
+    border-bottom: 1px solid rgb(240, 240, 240);
+  }
+  .header.on {
+    display: block;
+  }
+  .header .top_inner {
+    position: relative;
+    height:100%;
+  }
+  
+  .header .logo a {
+    display:block;
+    position: absolute;
+    top:14px;
+    left:20px;
+    width:134px;
+    height:16px;
+  }
+  
+  .header .logo a img {
+    display:block;
+    width:100%;
+  }
+  
+  .header .icon_area {
+    position: absolute;
+    right:0;
+    top:0;
+  }
+  
+  .header .icon_area .icon_inner a{
+    display:block;
+    width:32px;
+    height:32px;
+    margin: 5px 8px 5px 0px;
+  }
+  
+  .header .icon_area .icon_inner a img{
+    display:block;
+    width:100%;
+  }
+  
+  .tab_btn {
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+    z-index: 13;
+  }
+  .tab_btn.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 13;
+    width: 100%;
+    max-width: 768px;
+  }
+  .tab_btn a {
+    float: left;
+    width: 25%;
+    font-size: 0;
+    height: 15vw;
+    background-size: 100% 100% !important;
+  }
+  .tab_btn a.one {
+    background:url("hotelGuideIMG/reservation_off.png") no-repeat;
+  }
+  .tab_btn a.two {
+    background:url("hotelGuideIMG/room_off.png") no-repeat;
+  }
+  .tab_btn a.three {
+    background:url("hotelGuideIMG/service_off.png") no-repeat;
+  }
+  .tab_btn a.four {
+    background:url("hotelGuideIMG/facility_off.png") no-repeat;
+  }
+  .tab_btn a.one.on {
+    background:url("hotelGuideIMG/reservation_on.png") no-repeat;
+  }
+  .tab_btn a.two.on {
+    background:url("hotelGuideIMG/room_on.png") no-repeat;
+  }
+  .tab_btn a.three.on {
+    background:url("hotelGuideIMG/service_on.png") no-repeat;
+  }
+  .tab_btn a.four.on {
+    background:url("hotelGuideIMG/facility_on.png") no-repeat;
+  }
+  .cont_area {
+    display: none;
+  }
+  .cont_area img {
+    width: 100%;
+    display: block;
+  }
+  .cont_area.on {
+    display: block;
+  }
+  
+  @media screen and (min-width: 768px) {
+    #root, .header{
+      max-width: 768px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .tab_btn a {
+      height: 121px;
+    }
+  }
+

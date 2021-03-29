@@ -1,4 +1,7 @@
 @charset "utf-8";
+body, div {
+    margin: 0;
+}
 .detail-header {
     padding-top: 24px;
     position: relative;
@@ -134,18 +137,6 @@
     margin-left: 28px;
     background-color: #fff;
 }
-.detail-true-review .satisfaction:before {
-    position: absolute;
-    background-image: url(https://cdn.dailyhotel.com/ux/icon-detail-satisfaction.svg);
-    background-size: 16px;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    width: 20px;
-    height: 20px;
-    top: 2px;
-    left: -22px;
-    content: "";
-}
 .detail-true-review .satisfaction .rate {
     font-size: 20px;
     font-weight: 700;
@@ -188,7 +179,6 @@
     border-radius: 3px;
     border: 1px solid #e7e7e7;
     background-color: #fff;
-    color: #db074a;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -2,15 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ include file="header.jsp" %> 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>search</title>
-</head>
-<c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <link rel="stylesheet" href="${cpath }/resources/css/search.css">
 <body>
     <div class="search">
@@ -25,32 +16,47 @@
 						<img src="https://cdn.dailyhotel.com/ux/icon-search-navigation.svg" alt="">
 					</div>
 					<div id="searchInput" class="search-input" style="width: 100%;">
-						<input id="Input" type="text" placeholder="호텔명 입력">
+						<input type="text" id="search" onkeyup="filter()" placeholder="호텔명 입력해주세요.">
 					</div>
 				</div>
-				<button id="searchBtn" class="search-btn" disabled="true">검색하기</button>
 			</div>
 			<div class="slider_aside"></div>
 		</div>
 	</div>
-	<div class="search_result"></div>
-	
-	<script>
-		const inputText = document.querySelector('#Input');
-		const searchBtn = document.querySelector('#searchBtn');
-		
-		const searchHandler = function(event){
-			if(inputText.value == ''){
-				searchBtn.style.color = '#dcdcdc';
-				searchBtn.style.background = '#e6e6e6';
-			} else {
-				searchBtn.style.color = '#fff';
-				searchBtn.style.background = '#db074a';
-			}
-		}
-		
-		inputText.onkeyup = searchHandler;
-	</script>
+	<div class="search_result">
+	<div class="hotel-list hotel-list-scroll">
+		<c:forEach var="dto" items="${list}">
+			<div class="hotel-section">
+				<div class="hotel-section-img">
+					<a href="${cpath }/hotelView/${dto.HO_NAME}/">
+						<img src="http://182.212.181.172:9000/${dto.HO_UPLOADFILE}" style="width: 720px;">
+					</a>
+				</div>
+				<div style="height: 10px; background-color: white;"></div>
+				<div class="hotel-section-info">
+					<div class="hotelName">${dto.HO_NAME }</div>
+					<div>${dto.HO_DESCRIPTION }</div>
+				</div>
+			</div>
+		</c:forEach>
+		</div>
+	</div>
 
+	<script>
+        function filter() {
+          let search = document.getElementById("search").value.toLowerCase();
+          let hotelSection = document.getElementsByClassName("hotel-section");
+  
+          for (let i = 0; i < hotelSection.length; i++) {
+            hotelName = hotelSection[i].getElementsByClassName("hotelName");
+            
+            if (hotelName[0].innerHTML.toLowerCase().indexOf(search) != -1) {
+              hotelSection[i].style.display = "block"
+            } else {
+              hotelSection[i].style.display = "none"
+            }
+          }
+        }
+    </script>
 </body>
 </html>

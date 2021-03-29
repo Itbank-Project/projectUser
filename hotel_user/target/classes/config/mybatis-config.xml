@@ -12,6 +12,10 @@
 	
 	<typeAliases>
 		<typeAlias type="com.hotel.member.MemberDTO" alias="member"/>
+		<typeAlias type="com.hotel.hotel.HotelDTO" alias="hotel"/>
+		<typeAlias type="com.hotel.reservation.ReservationDTO" alias="reservation"/>
+		<typeAlias type="com.hotel.review.ReviewDTO" alias="review"/>
+		<typeAlias type="com.hotel.calendar.CalendarDTO" alias="calendar"/>
 	</typeAliases>
 	
 </configuration>

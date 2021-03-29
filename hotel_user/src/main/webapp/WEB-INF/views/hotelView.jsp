@@ -1,14 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="header.jsp" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
+%>
 <c:set var="cpath">${pageContext.request.contextPath }</c:set>    
 <link rel="stylesheet" href="${cpath }/resources/css/calendar.css"></link>
 <link rel="stylesheet" href="${cpath }/resources/css/userHotel.css"></link>
 <link rel="stylesheet" href="${cpath }/resources/css/style.css"></link>
+<link rel="stylesheet" href="${cpath }/resources/css/modal_review.css"></link>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<style>
+	/* 바디에 스크롤 막는 방법 */
+	.not_scroll{
+	    position: fixed;
+	    overflow: hidden;
+	    width: 100%;
+	    height: 100%;
+	}
+	
+	.scroll{
+		overflow: scroll;
+		width: auto;
+		height: 500px;
+	}
+</style>
 
-    <div style="width: 768px; margin: auto; height:45px; display: flex; justify-content: space-between; margin-bottom: 10px;">
-        
+   <div style="width: 768px; margin: auto; height:45px; display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <form method="post">
         <!-- 날짜 선택하고 객실 보기 -->
         <div class="Floating__StyledFloatingBtnRedBot-ej6lt-0 cIjWgG">
             <div class="fixed-wrapper">
@@ -34,11 +59,21 @@
                               
 
                             </div>
+                            
+                            		<div class="reservation">
+							    <div>
+							        <p>예약일</p>
+							        <input name="indata" class="dataSelector" placeholder="ex)2021-12-25" />
+							        <input type="hidden" name="ro_ho_name"  value="" />
+							    </div>	
+                            </div>
+                            
+                            
                             <div class="modal-body">
                                 <div id="day">
-                                    <div id="calendar-left"><label onclick="prevClaendar()"><</label></div>
+                                    <div id="calendar-left"><label onclick="prevClaendar()">《</label></div>
                                     <div id="calendarYM">yyyy년 m월</div>
-                                    <div id="calendar-right"><label onclick="nextCalendar()">></label></div>
+                                    <div id="calendar-right"><label onclick="nextCalendar()">》</label></div>
                                   </div>
                                   <table id="calendar"  border="3" >
                                         <tr id="week">
@@ -57,7 +92,7 @@
                                      <div class="Calendar__LowestPriceGuideTxt-t03w0s-1 OihNn">
                                         당일 숙박 최저가 기준으로 표시됩니다.
                                      </div>
-                                     <button class="dateBtn">체크인 날짜를 선택해주세요</button>
+                                     <button  type="submit" class="dateBtn">체크인 날짜를 선택해주세요</button>
                                  </div> 
                                 <div class="close-modal"><a class="closebtn js-close-modal">Close</a></div>
                               </div>
@@ -66,63 +101,106 @@
                 </div>
             </div>
         </div>
-		
-
+        </form>
  </div> 
 
-
     <div style="width: 768px; margin: auto;">
-      <div>
-            <img src="${cpath }/resources/img/hilton.co.kr.jpg" width="100%" height="300px">
-        </div>
+      	<div>
+            <img src="${cpath }/uploadFile/${map.dto.ho_uploadfile}" width="100%">
+      	</div>
 
         <div class="detail-header">
             <div class="detail-bg">
-                <div class="detail-grade">특1급</div>
-                <div class="detail-title">힐튼부산</div>
+                <div class="detail-title">${map.dto.ho_name}</div>
                 <div class="detail-price-wrapper">
                     <div class="hotel-price-info">
                         <div class="price-by-type">
                             <div class="price-txt-group">
-                                <span class="price">309,900</span>
-                                <span class="price-suffix">원 부터~</span>
+                                <span class="price"><fmt:formatNumber value="${map.roomPrice }" pattern="#,###" /></span>
+                                <span class="price-suffix">원</span>
                             </div>
                         </div>
                     </div>
-                    <div class="ref-date">(3월 8일 투숙 기준)</div>
-                </div>
-                <div class="detail-true-awards">
-                    <span class="suffix">데일리 트루어워즈</span>
-                    <span class="awards-title">
-                        최고의 호텔/리조트
-                    </span>
-                    <span class="awards-question"></span>
+                    <div class="ref-date">(<%= sf.format(nowTime) %> 투숙 기준)</div>
                 </div>
             </div>
         </div>
 
         <div class="detail-bg detail-true-review">
             <div class="diGnvT">
-                <h1 class="detail-title">트루리뷰</h1>
+                <h1 class="detail-title">리뷰</h1>
                 <div class="satisfaction">
-                    <span class="rate">97%</span>
-                    <span class="evaluation">(3,835명 평가)</span>
+                    <span class="evaluation">(${map.count } 명 평가)</span>
                 </div>
-            </div>
-            <div class="LinesEllipsis review">
-                힐튼 호텔이 왜 5성급인지 와보시면 딱 나옵니다.!!! 다만 너무 넓고 구조가 복잡해서 길을 잃으면 숙소에 돌아오기가 힘드니. . . 비싼돈 주고 예약했는데 밖에서 자기 싫으시면 항상 직원들에게 물어보세요
-            </div>
-            <div class="review-info">
-                <span class="rate">5.0</span>
-                <span class="evaluation">kyu**</span>
-            </div>
-            <a href="">
+         </div>
+            <c:forEach var="review" items="${map.showReview }">
+	        <div class="LinesEllipsis review" >
+	          ${review.REVIEW_OPINION }
+	        </div>
+	        <div class="review-info">
+	            <span class="evaluation">${review.REVIEW_SCORE }.0점 </span>
+	            <span class="rate">${review.REVIEW_CU_ID }</span>
+	        </div>
+            </c:forEach>
+          	
                 <div class="more-review">
-                <span>2,204</span>
-                개 리뷰 더보기
-                </div>  
-            </a>
-        </div>        
+					<div class="page-wrapper trigger">
+					  <a class="btn-review" href="#">리뷰 더보기</a>
+					</div>
+<!-- 					Modal -->
+					<div class="modal-wrapper-review">
+					  <div class="modal-review">
+					    <div class="head-review">
+					      <div class="true-review">트루 리뷰</div>
+					      <div class="close-review"><a class="btn-close trigger" href="#">x</a></div>
+					    </div>
+					    <div class="content-review">
+					        <div class="good-job">
+					          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					         	<div class="review-body">
+						         	<div class="review-box-user">
+							         		<div class="review-evaluation">
+		                                 		<p>=== 리뷰 평가 ====</p>
+		                              		</div>   
+				                            <div class="review-graph">
+				                           	    <p>=== 만족, 불만족 ===</p>
+				                            </div>   
+					                              <div class="multiple-reviews">
+					                                 <h2>${map.count }개의 리뷰</h2>
+					                        <c:forEach var="review" items="${map.showReview }">
+					                                 <div class="review-user">
+					                                    <span>${review.REVIEW_SCORE }.0점 </span><span>=== 방 타입 === </span>
+					                                    <div>  ${review.REVIEW_OPINION }</div>
+					                                    <span> ${review.REVIEW_CU_ID } </span><span>${review.REVIEW_CREDATE }</span>
+					                                 </div>   
+					                                 <div>--------------------------------------------</div>
+					                       </c:forEach>    
+					                              </div>  
+							         		</div>
+						         	</div>
+					        </div>
+					    </div> <!-- end content-review -->
+					  </div>
+					</div>
+					</div>
+<!--              모달창 리뷰 끝 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+     <script> 
+       var posY;
+        
+       $(".btn-review").on("click", function(e){
+          posY = $(window).scrollTop();
+            
+            $("html, body").addClass("not_scroll");
+            $(".review-body").addClass("scroll");
+        });
+        
+       $(".btn-close").on("click", function(){
+            $("html, body").removeClass("not_scroll");
+            posY = $(window).scrollTop(posY);
+         });
+ </script> 
+        </div>         
         <hr>
         <div>
             <h3>객실 선택</h3>
@@ -147,11 +225,7 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
             </div>
-
-
-
-
-           
+		
        <div style="height: 44px;
             border-radius: 2px;
             border: 1px solid rgb(218, 73, 119);
@@ -169,7 +243,7 @@
                 <h1 class="title">hotel java?'s comment</h1>
                 <ul>
                     <li>
-                        <p class="comment">천혜의 자연 경관을 갖춘 힐튼 부산은 레저, 비즈니스 및 웨딩을 위한 완벽한 공간입니다.</p>
+                        <p class="comment">${map.dto.ho_description }</p>
                         <span class="order">01</span>
                     </li>
                     <li>
@@ -190,36 +264,53 @@
         
         <div class="facility">
             <h1 class="detail-title">업장 내 편의시설</h1>
-            <h2 class="room-count">객실수 : 310개</h2>
             <ul class="facilities clearfix">
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-parking.svg" alt="Parking"><br><span>주차가능</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-cafeteria.svg" alt="Cafeteria"><br><span>카페테리아</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-spamassage.svg" alt="SpaMassage"><br><span>스파마사지</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-pool.svg" alt="Pool"><br><span>수영장</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-sauna.svg" alt="Sauna"><br><span>사우나</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-bassinet.svg" alt="Bassinet"><br><span>아기침대대여</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-wifi.svg" alt="WiFi"><br><span>무료Wifi</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-fitness.svg" alt="Fitness"><br><span>피트니스</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-conveniencestore.svg" alt="ConvenienceStore"><br><span>편의점(매점)</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-businesscenter.svg" alt="BusinessCenter"><br><span>비즈니스센터</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-seminarroom.svg" alt="SeminarRoom"><br><span>세미나실</span></li>
-                <li><img src="https://cdn.dailyhotel.com/ux/facilities-icon/f-ic-facilities-breakfastrestaurant.svg" alt="BreakfastRestaurant"><br><span>조식당</span></li>
+            	<c:if test="${not empty map.dto.ho_wifi }">
+            		<li>
+            			<img src="${cpath }/resources/img/37.png" width="70px" height="70px">
+            			<br>Wifi<br>
+           			</li>
+            	</c:if>
+            	
+            	<c:if test="${not empty map.dto.ho_pc }">
+	           		<li>
+            			<img src="${cpath }/resources/img/28.png" width="70px" height="70px">
+            			<br>PC<br>
+	           		</li>
+           		</c:if>
+           		
+            	<c:if test="${not empty map.dto.ho_breakfast }">
+           			<li>
+            			<img src="${cpath }/resources/img/10.png" width="70px" height="70px">
+            			<br>조식<br>
+           			</li>
+            	</c:if>
+            	
+             	<c:if test="${not empty map.dto.ho_smoke }">
+           			<li>
+            			<img src="${cpath }/resources/img/50.png" width="70px" height="70px">
+            			<br>흡연가능<br>
+           			</li>
+            	</c:if>
+            	
+             	<c:if test="${not empty map.dto.ho_parking }">
+           			<li>
+            			<img src="${cpath }/resources/img/1.png" width="70px" height="70px">
+            			<br>주차가능<br>
+           			</li>
+           		</c:if> 
             </ul>
         </div>
 
         <br>
         <div class="map">
             <div class="inner">
-                <a href="map.html">
+            	<a href="${cpath}/map/${hotelName}">
                     <div class="addr">
-                        <span>부산광역시 기장군 기장읍 기장해안로 268-32</span>
+                        <span>${map.dto.ho_address }</span>
                         <img src="https://cdn.dailyhotel.com/ux/icon-detail-map.svg" alt="map icon">
                     </div>
                 </a>
-                <div class="copy">
-                    <img src="https://cdn.dailyhotel.com/ux/icon-detail-copy-address.svg" alt="주소복사">
-                    <span>주소 복사</span>
-                </div>
             </div>
         </div>
         <br>
@@ -230,12 +321,12 @@
             <div id="check">
                 <div id="check-in">
                     <span style="font-size: 14px; color: #888888">체크인<br></span>
-                    <span style="font-size: 16px; color: #4D4D4D;">15:00</span>
+                    <span style="font-size: 16px; color: #4D4D4D;">${map.dto.ho_check_in }</span>
                    
                 </div>
                 <div id="check-out">
                     <span style="font-size: 14px; color: #888888">체크아웃<br></span>
-                    <span style="font-size: 16px; color: #4D4D4D;">11:00</span>                
+                    <span style="font-size: 16px; color: #4D4D4D;">${map.dto.ho_check_out }</span>                
                 </div>
             </div>    
         </div>
@@ -249,7 +340,7 @@
             </ul>            
         </div>
         <hr>
-
+                                                                                                                                                                
         <!-- 부대시설 정보 -->        
         <div class="static-item">
             <h1>부대시설 정보</h1>
@@ -386,7 +477,7 @@
         </div>
         <hr>
         <!-- 판매자 정보-->
-        <a href="${cpath }/sellerInformation">
+        <a href="${cpath }/sellerInformation/${map.dto.ho_name}/">
             <div class="seller-info-box">
                 <p>판매자 정보</p>
             </div>
@@ -396,18 +487,18 @@
         <div class="padding-wrapper">
             <div class="councierge">
                 <h4 class="detail-title">무엇을 도와드릴까요?</h4>
-                <div class="help-text">데일리호텔 고객센터가 친절하고 신속하게 답변해드려요.</div>
+                <div class="help-text">호텔자바 고객센터가 친절하고 신속하게 답변해드려요.</div>
                 <div class="help-time">상담시간: 오전 9시 ~ 익일 새벽 3시</div>
                 <div class="help-inquiry">
                     <img src="https://cdn.dailyhotel.com/ux/icon-detail-ops-help.svg" alt="고객센터 문의하기">
-                    고객센터 문의하기
+                    000-0000-0000
                 </div>
-                <p></p>
             </div>
         </div>
-            
-    
+	<!-- 페이지 맨 밑부분 공백 -->
+        <div style="height: 50px;"></div>
     </div>
+
 
     <script type="text/javascript" src="${cpath }/resources/js/calendar.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
@@ -461,18 +552,31 @@
         $('.container').removeClass('modal-open');
         });
     </script>
-
+      <script>
+	      // 모달창 리뷰
+      $( document ).ready(function() {
+    	  $('.trigger').on('click', function() {
+    	     $('.modal-wrapper-review').toggleClass('open');
+    	    $('.page-wrapper-review').toggleClass('blur-it');
+    	     return false;
+    	  });
+    	});
+    </script>
      <script type="text/javascript" >
      // 달력
         buildCalendar();
       </script>
 
+   <script>
+	// 예약 달력
+	 
+	 var dataSelector = document.querySelector('.dataSelector');
+	 dataSelector.flatpickr( {
+	    mode: "range",
+	    dateFormat: "Y-m-d",
+	
+	});
+ </script>
+
 </body>
 </html>
-
-
-
-
-
-
-    

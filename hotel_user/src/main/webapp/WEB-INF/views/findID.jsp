@@ -107,7 +107,6 @@
     close_btn.onclick = function(){
     	location.href = cpath +'/login';
     } 
-
     // 아이디 찾기 버튼 눌렀을 때
     findId_btn.onclick = function(){
     	const findIdForm = document.getElementById('findIdForm');
@@ -133,11 +132,13 @@
 				alert(text);
 			}
 			else{
-				modal_findId.classList.remove('hidden');	
+				alert('아이디 찾기 : ' + text);
+				location.href = cpath +'/login';
+				/* modal_findId.classList.remove('hidden');	
 				modal_result.style.color = 'blue';
 				modal_result.style.fontWeight = 'bold';
 				modal_result.style.fontSize = '16pt';
-				modal_result.innerText = text;
+				modal_result.innerText = text; */
 			}
 		});	
     }
