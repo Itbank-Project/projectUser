@@ -5,9 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,12 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hotel.calendar.CalendarDTO;
 import com.hotel.hotel.HotelDTO;
 import com.hotel.member.MemberDTO;
+import com.hotel.reply.ReplyDTO;
 import com.hotel.reservation.ReservationDTO;
 import com.hotel.review.ReviewDTO;
 import com.hotel.service.CalendarService;
 import com.hotel.service.HotelService;
 import com.hotel.service.MailService;
 import com.hotel.service.MemberService;
+import com.hotel.service.ReplyService;
 import com.hotel.service.ReservationService;
 import com.hotel.service.ReviewService;
 
@@ -38,6 +41,7 @@ public class MainController {
 	@Autowired private MailService mailService;
 	@Autowired private ReviewService reviewService;
 	@Autowired private CalendarService cs;
+	@Autowired private ReplyService replyService;
 	
 	// 메인페이지
 	@GetMapping("")
@@ -66,13 +70,32 @@ public class MainController {
 //		 리뷰 전체 목록
 		List<ReviewDTO> showReview = reviewService.selectReview(hotelName);
 		System.out.println("showReview : " +  showReview);
+		
+		
+		for(int i = 0; i < showReview.size(); i++) {
+			System.out.println("i : " + i);
+			map.put("review_idx", showReview.get(i).getReview_idx());
+			System.out.println("idx : " + showReview.get(i));
+			
+			List<ReplyDTO> replyList = replyService.getReplyList(map);
+			System.out.println("for : " + replyList);
+			for(ReplyDTO vo : replyList) {
+				System.out.println("fo안 : " + vo.getReply_review_idx());
+				if(showReview.get(i).getReview_idx() == vo.getReply_review_idx()) {
+					System.out.println("답글 : " + vo.getReply_opinion());
+					System.out.println("aaaa");
+					showReview.get(i).setReply_opinion(vo.getReply_opinion().replaceAll("\r\n", "<br>"));
+					break;
+				}	
+			}
+		}
+		
 		map.put("showReview", showReview);
 		
 //		 리뷰 전체 갯수
 		int count = reviewService.selectCount(hotelName);
-		System.out.println(count);
+		System.out.println("리뷰 전체 갯수 : " + count);
 		map.put("count", count);
-		
 		
 		// 방 최적화 가격
 		map.put("hotelName", hotelName);
@@ -83,13 +106,6 @@ public class MainController {
 		
 		map.put("roomPrice", calendar_price);
 		
-		// 리뷰 만족 갯수
-//		int goodCount = reviewService.getGoodCount(hotelName);
-		
-		
-		// 리뷰 불만족 갯수
-//		int badCount = reviewService.getBadCount(hotelName);
-		
 		map.put("dto", dto);
 		mav.addObject("map", map);
 		
@@ -97,26 +113,35 @@ public class MainController {
 	}
 	
 	@PostMapping("hotelView/{hotelName}/")
-	public ModelAndView hotelView (@PathVariable String hotelName, String indata) throws ParseException {
+	public ModelAndView hotelView (@PathVariable String hotelName, String indata){
 		ModelAndView mav = new ModelAndView("selectRoom");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("hotelName", hotelName);
 		map.put("indata", indata);
 		System.out.println("메인 컨트롤 : " + hotelName);
 		System.out.println("메인 컨트롤 roomSelect: " + indata);
-		SimpleDateFormat sdf = new SimpleDateFormat ( "yyyy-MM-dd");	// 오늘 날짜 출력
-		Date time = new Date();
-		String day = sdf.format(time);
-		System.out.println("오늘 날짜 : " + day);
+		System.out.println("달력 : " + indata);
 		
+		if(indata != "") {
 		
+		String[] data = indata.split(" ~");
+		
+		String dateStart = data[0];
+		String dateEnd = data[1];
+
+		System.out.println("체크인 : "+ dateStart);
+		System.out.println("체크아웃 : " + dateEnd);
+		map.put("dateStart", dateStart);
+		map.put("dateEnd", dateEnd);
+		} else {
+		mav.setViewName("redirect:javascript:history.go(-1)");
+		return mav;	
+		}
 		// 방 리스트 띄우기
-		map.put("day", day);
 		List<CalendarDTO> roomList = cs.getRoomList(map);
 		System.out.println("roomList : "  + roomList);
 		map.put("roomList", roomList);
 		mav.addObject("map", map);
-		
 		return mav;
 	}
 	
@@ -143,30 +168,36 @@ public class MainController {
 	public void login() {}
 	
 	// 로그인 (쿠키)
-	@PostMapping("login")
-	public ModelAndView login(MemberDTO dto, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		
-		String userid = dto.getCu_id();
-		String storeid = request.getParameter("storeid");
-		
-		MemberDTO login = ms.getMember(dto);
-		
-		Cookie c = new Cookie("userid", userid);
-		
-		session.setAttribute("login", login);
-		
-		boolean flag = (storeid != null) && (session.getAttribute("login") != null);
-		
-		c.setMaxAge(flag ? 60 * 60 * 24 * 100 : 0);	
-		response.addCookie(c);	
-		
-		mav.setViewName(login != null ? "redirect:/" : "msg");
-		if(login == null) {
-			mav.addObject("msg", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+		@PostMapping("login")
+		public ModelAndView login(MemberDTO dto, HttpServletRequest request, HttpServletResponse response, HttpSession session, String uri) throws UnsupportedEncodingException {
+			ModelAndView mav = new ModelAndView();
+			
+			String userid = dto.getCu_id();
+			String storeid = request.getParameter("storeid");
+			
+			MemberDTO login = ms.getMember(dto);
+			
+			Cookie c = new Cookie("userid", userid);
+			
+			session.setAttribute("login", login);
+			
+			boolean flag = (storeid != null) && (session.getAttribute("login") != null);
+			
+			c.setMaxAge(flag ? 60 * 60 * 24 * 100 : 0);	
+			response.addCookie(c);	
+			
+			
+			uri = (uri != null) ? uri : "/";
+			System.out.println("메인컨트롤러 uri : " + uri);
+			
+			
+			mav.setViewName(login != null ? "redirect:" + URLEncoder.encode(uri, "UTF-8").replace("%2F", "/").replace("+", " ") : "msg");
+			
+			if(login == null) {
+				mav.addObject("msg", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+			}
+			return mav;
 		}
-		return mav;
-	}
 	
 	// 로그아웃
 	@GetMapping("logout")
@@ -202,12 +233,28 @@ public class MainController {
 	
 	// 마이 페이지
 	@GetMapping("myPage")
-	public ModelAndView myPage(HttpSession session) {
+	public ModelAndView myPage(HttpSession session) throws ParseException {
 		ModelAndView mav = new ModelAndView("myPage");
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		String userid = dto.getCu_id();
 		System.out.println("마이페이지 : " + userid);
 		List<ReservationDTO> reservationList = res.getReservationInfo(userid);
+		
+		for (int i = 0; i < reservationList.size(); i++) {
+			String indate = reservationList.get(i).getRe_indate();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date time = new Date();
+			String time1 = format.format(time);
+			
+			Date indate2 = format.parse(indate);
+			Date nowTime = format.parse(time1);
+			
+			int canDate = (int)(indate2.getTime() - nowTime.getTime());
+			int canTime = canDate /(24*60*60*1000);
+			
+			reservationList.get(i).setCanTime(canTime);
+		}
+
 		mav.addObject("reservationList", reservationList);
 		
 		return mav;
@@ -251,7 +298,7 @@ public class MainController {
 		System.out.println(roomType);
 		
 		
-		String[] data = indata.split(" to");
+		String[] data = indata.split(" ~");
 		
 		String dateStart = data[0];
 		String dateEnd = data[1];
@@ -267,12 +314,12 @@ public class MainController {
 		Date startDate = sdf.parse(dateStart);
 		Date endDate = sdf.parse(dateEnd);
 		
-		long day = (endDate.getTime() - startDate.getTime()) / (24*60*60*1000);
+		long day = (endDate.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000);
 		System.out.println("몇박인지 ? " + day);
 		
 		int result = 0;
 		List<CalendarDTO> roomList =  cs.getOneRoom(map);
-		for(int i = 0; i < roomList.size(); i++) {
+		for(int i = 0; i < roomList.size() - 1; i++) {
 			System.out.println("roomList : " + roomList.get(i).getCalendar_price());
 			result += roomList.get(i).getCalendar_price();
 		}
@@ -311,7 +358,7 @@ public class MainController {
 		HotelDTO hotelDTO = hs.getSellerInfo(hotelName);
 		mav.addObject("hotelDTO", hotelDTO);
 		
-		String[] data = indata.split(" to");
+		String[] data = indata.split(" ~");
 
 		String dateStart = data[0];
 		String dateEnd = data[1];
@@ -332,7 +379,7 @@ public class MainController {
 		
 		int result = 0;
 		List<CalendarDTO> roomList =  cs.getOneRoom(map);
-		for(int i = 0; i < roomList.size(); i++) {
+		for(int i = 0; i < roomList.size() - 1; i++) {
 			System.out.println("roomList : " + roomList.get(i).getCalendar_price());
 			result += roomList.get(i).getCalendar_price();
 		}
@@ -343,7 +390,7 @@ public class MainController {
 		map.put("dayEnd", dateEnd);
 		map.put("fewDay", day);
 		map.put("indata", indata);
-		map.put("result", result); // 총 결제 금액
+		map.put("result", result);	 // 총 결제 금액
 		mav.addObject("map", map);
 		return mav;
 	}

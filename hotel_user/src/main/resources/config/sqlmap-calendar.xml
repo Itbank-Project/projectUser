@@ -7,10 +7,10 @@
 	
 <!-- 	날짜에 맞게 출력 -->
 	<select id="selectRoomList"  parameterType="hashmap" resultType="hashmap">
-	select * from calendar
+		select * from calendar
     join room on room.ro_pk = calendar.calendar_ro_pk
     join hotel on room.ro_ho_name = hotel.ho_name
-        where ho_name = #{hotelName} and  calendar_date = #{day}
+        where ho_name = #{hotelName} and  calendar_date = #{dateStart}
 	</select>
 	
 	<select id="selectRoomPrice" parameterType="hashmap" resultType="string">
@@ -18,7 +18,7 @@
 			from calendar
 			join room on room.ro_pk = calendar.calendar_ro_pk
 			join hotel on room.ro_ho_name =  hotel.ho_name 
-				where ho_name = #{hotelName}  and calendar_date = #{day}
+				where ho_name = #{hotelName}  and calendar_date = #{day} and calendar_count != 0
 	</select>
 	
 		<select id="getOneRoom" resultType="calendar" parameterType="hashmap">

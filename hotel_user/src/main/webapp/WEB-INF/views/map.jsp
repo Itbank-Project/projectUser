@@ -10,9 +10,9 @@
             text-align: center;
         }
         .back {
-            width: 768px;
+            width: 1000px;
             height: 500px;
-            margin: auto;
+            margin: 0 auto;
             display: flex;
             border-bottom: 1px solid black;
             height: 43px;
@@ -36,9 +36,9 @@
             padding-left: 96px;
         }
         .address {
-            max-width: 768px;
+            max-width: 1000px;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
             display: flex;
             height: 43px;
         }
@@ -49,7 +49,7 @@
             text-align: left;
             padding-top: 11px;
             padding-bottom: 11px;
-            padding-left: 96px;
+            padding-left: 372px;
         }
         .address > input {
             width: 70.61px;
@@ -72,7 +72,7 @@
 </header>
 <body>
 
-	<div id="map" style="width: 768px;height:550px; margin: auto;"></div>
+	<div id="map" style="width: 1000px;height:600px; margin: auto;"></div>
 	
 	<div style="margin-top: 30px; margin-bottom:20px; text-align: center;">
 	    <div class="link">

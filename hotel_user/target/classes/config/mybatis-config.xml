@@ -16,6 +16,7 @@
 		<typeAlias type="com.hotel.reservation.ReservationDTO" alias="reservation"/>
 		<typeAlias type="com.hotel.review.ReviewDTO" alias="review"/>
 		<typeAlias type="com.hotel.calendar.CalendarDTO" alias="calendar"/>
+		<typeAlias type="com.hotel.reply.ReplyDTO" alias="reply"/>
 	</typeAliases>
 	
 </configuration>

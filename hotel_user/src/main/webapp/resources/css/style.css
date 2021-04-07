@@ -1,4 +1,4 @@
-@charset "utf-8";
+	@charset "utf-8";
 body, div {
     margin: 0;
 }
@@ -186,7 +186,8 @@ body, div {
 }
 
 .hotel-comment {
-    max-width: 728px;
+    /* max-width: 1200px; */
+    width: 96%;
     padding: 26px 20px 30px;
     background-color: #f8f8f9;
     display: flex;
@@ -254,7 +255,7 @@ body, div {
     border-right: 1px solid black;
 }
 #check-in,#check-out {
-    width: 364px;
+    width: 600px;
     height: 60px;
     display: flex;
     justify-content: center;

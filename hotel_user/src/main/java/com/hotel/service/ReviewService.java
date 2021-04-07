@@ -24,4 +24,10 @@ public class ReviewService {
 	public int selectCount(String hotelName) {
 		return dao.selectCount(hotelName);
 	}
+	
+	// 회원이 리뷰를 작성했으면 가지고 오기
+	public ReviewDTO selectOneReview(int review_re_idx) {
+		// TODO Auto-generated method stub
+		return dao.selectOneReview(review_re_idx);
+	}
 }

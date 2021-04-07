@@ -30,7 +30,7 @@
 				left outer join room on room.ro_pk = calendar.calendar_ro_pk
 				             left outer join hotel on room.ro_ho_name = hotel.ho_name
 				       where customer.cu_id = #{cu_id}  
-       order by reservation.re_idx desc
+        order by reservation.re_paydate desc
 	</select>
 
 	<!-- 예약이 완료되면 관리자에게 해당 예약내역 메일로 보내기 -->

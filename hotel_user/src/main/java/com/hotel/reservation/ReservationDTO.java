@@ -27,7 +27,18 @@ public class ReservationDTO {
 
 	// 예약내역 불러올 때 같이 불러올 목록
 	private String ho_name, cu_name, cu_pnum, ad_email, ad_id, ad_name, ro_roomType;
+	
+	// 하루 전 취소 못하게 하기
+	private int canTime;
 
+	public int getCanTime() {
+		return canTime;
+	}
+
+	public void setCanTime(int canTime) {
+		this.canTime = canTime;
+	}
+	
 	public int getRe_idx() {
 		return re_idx;
 	}

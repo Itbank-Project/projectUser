@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
-<%@ include file="footer.jsp" %>
 
 <link rel="stylesheet" href="${cpath }/resources/css/selectRoom.css">
 
 <body>	
-	
+<c:if test="${not empty map.roomList }">	
 	<div class="selectRoom">
 		<div class="selectRoom_title">
 			<h3>객실선택 <span style="font-size: 12px; color: #929292; margin-left: 4px;">(세금/봉사료 포함)</span></h3>
@@ -26,7 +25,7 @@
 		<div class="selectRoom_Type">
 		<c:forEach var="room" items="${map.roomList }">
 			<div class="selectRoom_type_item" >
-				<div class="room_img"><a href='${cpath}/rooms/${map.indata }/${room.RO_HO_NAME }/${room.RO_ROOMTYPE}/'>${room.RO_UPLOADFILE }</a></div>
+				<div class="room_img"><a ${room.CALENDAR_COUNT == 0 ? 'href=#' : '' } href='${cpath}/rooms/${map.indata }/${room.RO_HO_NAME }/${room.RO_ROOMTYPE}/'><img class="fill" src="http://182.212.181.172:9000/${room.RO_UPLOADFILE }" ></a></div>
 				<div class="room_info">
 					<div class="room_type">${room.RO_ROOMTYPE }</div>
 					<div class="room_badType">
@@ -49,7 +48,11 @@
 		</c:forEach>	
 		</div>
 	</div>
-	
+</c:if>	
+
+<c:if test="${empty map.roomList }">
+	<div style="margin: auto; display:flex; justify-content: center; align-items: center; height: 1000px;"><h1>아직 준비중입니다.</h1></div>
+</c:if>
 
 </body>
 </html>

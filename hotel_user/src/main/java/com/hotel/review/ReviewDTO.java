@@ -17,6 +17,17 @@ public class ReviewDTO {
 	private Date review_creDate;
 	private String review_opinion, review_cu_id, review_goodORbad, ro_roomType;
 	
+	private String reply_opinion;
+	
+	// 여기가 추가한 부분 !
+	public void setReply_opinion(String reply_opinion) {
+		this.reply_opinion = reply_opinion;
+	}
+	public String getReply_opinion() {
+		return reply_opinion;
+	}
+	//
+	
 	public String getRo_roomType() {
 		return ro_roomType;
 	}

@@ -25,9 +25,8 @@
 <body>
 	<div class="root">
         <div class="inner-section">
-       
             <div style="position: relative;">
-                <img class="room-img" src="https://www.thek-hotel.co.kr/resources/skmh/images/room/img_room_view6_1.jpg">
+                <img class="room-img" style="height: 600px; margin-top: 10px;" src="https://www.thek-hotel.co.kr/resources/skmh/images/room/img_room_view6_1.jpg">
             </div>
         </div>
         <div class="inner-section">
@@ -37,7 +36,7 @@
             <div style="text-align: center; align-items: center; justify-content: center; flex-direction: column;">
                 <div style="font-weight: bold; font-size: 15pt; color: #4b4b4b; margin-bottom: 15px;">${map.roomList.ro_roomtype }</div>
                 <div class="price-wrapper">
-                    <span style="font-size: 13pt; font-weight: bold; color: #2e2e2e; padding: 0;"><fmt:formatNumber value="${map.roomList.calendar_price }" pattern="#,###" /></span>원
+                    <span style="font-size: 13pt; font-weight: bold; color: #2e2e2e; padding: 0;"><fmt:formatNumber value="${map.roomList.calendar_price }" pattern="#,###" /></span> 원 <span style="font-size: 12px; padding: 0;">(1박 기준)</span>
                 </div>
                 <div style="text-align: center; ">
                     <div class="cancel-reservation" style="width: 270px; margin: 0">(<%= today %>  16:59까지 무료취소 가능)</div>
@@ -65,11 +64,11 @@
             <div style="display: flex;">
                 <div class="check-inout" style="border-right: 1px solid #dadada;">
                     <div class="park-font">체크인</div>
-                    <div>${map.dto.ho_check_in }</div>
+                    <div>${map.roomList.ho_check_in }</div>
                 </div>
                 <div class="check-inout">
                     <div class="park-font">체크아웃</div>
-                    <div>${map.dto.ho_check_out }</div>
+                    <div>${map.roomList.ho_check_out }</div>
                 </div>
             </div>
         </div>
@@ -110,12 +109,12 @@
             <div class="blank"></div>
         </div>
     </div>
-    <div style="width: 768px; margin: 0 auto;">
+    <div style="width: 1000px; margin: 0 auto;">
         <div class="footer-fixed">
             <div class="footer-item">
                 <div class="footer-item-inner">
-                    <div class="reservation-btn">
-                      	<a href="${cpath }/payment/${map.indata }/${map.roomList.ro_ho_name }/${map.roomList.ro_roomtype}/" style="text-decoration: none; color: black; font-weight: bold;">총 결제금액 : <fmt:formatNumber value="${map.result }" pattern="#,###" />원 결제</a>
+                    <div class="reservation-btn" style="margin: 0 auto; text-align: center;">
+                      	<a href="${cpath }/payment/${map.indata }/${map.roomList.ro_ho_name }/${map.roomList.ro_roomtype}/" style="text-decoration: none; color: black; font-weight: bold; color: white;">총 결제금액 : <fmt:formatNumber value="${map.result }" pattern="#,###" />원 결제</a>
                     </div>
                 </div>
             </div>

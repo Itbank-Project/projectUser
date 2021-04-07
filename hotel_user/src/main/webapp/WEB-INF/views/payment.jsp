@@ -10,6 +10,134 @@
 <c:set var="cpath">${pageContext.request.contextPath }</c:set>   
 <link rel="stylesheet" href="${cpath }/resources/css/payment.css" > 
 </head>
+
+<style>
+	.wrap{
+	    width: 100%;
+	    position: relative;
+	}
+	
+	.wrap2{
+	    width: 100%;
+	    position: relative;
+	}
+	.wrap-in{ 
+	    width: 1200px;
+	    margin: 0 auto;
+	}
+	.agree_daddy2 {
+	    position: fixed;
+	    top: 0px;
+	    left: 0px;
+	    width: 100%;
+	    height: 100%;
+	    display: flex;
+	    /* display: none; */
+	    -webkit-box-align: center;
+	    align-items: center;
+	    -webkit-box-pack: center;
+	    justify-content: center;
+	    z-index: 99;
+	    background-color: rgba(0, 0, 0, 0.15);
+	}
+	.agree_mom2 {
+	    margin: 120px auto;
+	    border-radius: 2px;
+	    width: 700px;
+	    background-color: rgb(255, 255, 255);
+	    z-index: 8;
+	    box-sizing: border-box;
+	    opacity: 1;
+	}
+	.agree_div {
+	    position: relative;
+	    height: 100%;
+	    display: flex;
+	    flex-direction: column;
+	}
+	
+	.agree_div_top {
+	    border-radius: 2px 2px 0px 0px;
+	    padding: 42px 42px 36px;
+	    position: relative;
+	    opacity: 1;
+	}
+	
+	.agree_div_body {
+	    padding-top: 30px;
+	    padding-bottom: 42px;
+	    margin: 0px 42px;
+	    position: relative;
+	    height: auto;
+	    display: block;
+	    -webkit-box-align: center;
+	    align-items: center;
+	    border-top: 1px solid rgb(238, 238, 238);
+	    overflow-y: auto;
+	}
+	
+	.agree_title {
+	    font-size: 26px;
+	    line-height: 38px;
+	    padding-right: 48px;
+	    display: inline-block;
+	    width: 100%;
+	    font-weight: 700;
+	}
+	
+	.agree_x_button {
+	    line-height: 38px;
+	    top: 38px;
+	    right: 42px;
+	    position: absolute;
+	}
+	
+	.agree_x2 {
+	    position: relative;
+	    cursor: pointer;
+	    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjMjIyIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy40NjYgMTJsNi4yMy02LjIzYTEuMDM2IDEuMDM2IDAgMTAtMS40NjYtMS40NjZMMTIgMTAuNTM0bC02LjIzLTYuMjNBMS4wMzYgMS4wMzYgMCAxMDQuMzA0IDUuNzdsNi4yMyA2LjIzLTYuMjMgNi4yM2ExLjAzNiAxLjAzNiAwIDEwMS40NjYgMS40NjZsNi4yMy02LjIzIDYuMjMgNi4yM2ExLjAzNSAxLjAzNSAwIDEwMS40NjYtMS40NjVMMTMuNDY2IDEyeiIvPjwvc3ZnPg==") center center / cover no-repeat;
+	    overflow: hidden;
+	    padding: 15px 15px;
+	}
+	button {
+	    border: 0px;
+	    padding: 0px;
+	    display: inline-block;
+	    box-sizing: border-box;
+	}
+	
+	table {
+	    display: table;
+	}
+	
+	.agree_tbody {
+	    border: 1px solid rgb(238, 238, 238);
+	}
+	
+	.agree_tr {
+	    border-bottom: 1px solid rgb(238, 238, 238);
+	    text-align: left;
+	}
+	
+	.agree_th {
+	    font-size: 14px;
+	    font-weight: 700;
+	    background-color: rgb(238, 238, 238);
+	    padding: 12px;
+	    width: 150px;
+	    color: rgba(68, 68, 68);
+	}
+	
+	.agree_td {
+	    font-size: 12px;
+	    line-height: 18px;
+	    padding: 12px;
+	}
+	hidden {
+		display: none;
+	}
+</style>
+
 <body>
 <div class="paymentMainDiv">
 
@@ -141,15 +269,12 @@
             <div>
                 <input id="agreeCheck" type="checkbox">
             </div>
-            <div>개인정보 제 3자 제공 동의 (필수)</div>
+            <div class="personal_agree">개인정보 제 3자 제공 동의 (필수)</div>
         </div>
 
         <button id="paymentBtn">결제하기</button>
 
     </div>
-
-	<div>${hotelDTO.ad_email }</div>
-
     
     <div class="payment_modal hidden">
         <div class="payment_modal_overlay"></div>   <!--나머지 배경 어둡게 만드는 영역-->
@@ -182,6 +307,75 @@
         </div>
     </div>
 
+	<!-- 개인정보 제 3자 동의 -->
+	<div class="wrap2 hidden">
+        <!-- 전체 화면 -->
+        <div class="wrap-in">
+            <!-- 모달부분 -->
+            <div class="agree_daddy2">
+                <div class="agree_mom2">
+                    <div>
+                        <div class="agree_div">
+                            <div class="agree_div_top">
+                                <div class="agree_title">개인정보 제3자 제공 동의</div>
+                                <div class="agree_x_button">
+                                    <button class="agree_x2"></button>
+                                </div>
+                            </div>
+                            <div class="agree_div_body">
+                                <table class="agree_table">
+                                    <tbody class="agree_tbody">
+                                        <tr rowspan="1" class="agree_tr">
+                                            <th colspan="1" class="agree_th">제공받는자</th>
+                                            <td colspan="1" class="agree_td">예약할려는 호텔 이름 (ex 웨스턴 조선 서울)</td>
+                                        </tr>
+                                        <tr rowspan="1" class="agree_tr">
+                                            <th colspan="1" class="agree_th">제공 목적</th>
+                                            <td colspan="1" class="agree_td">예약 구매한 상품 서비스의 제공 및 계약의 이행
+                                                <br>(이용자 및 이용정보 확인), 민원 처리 등 소비자 분쟁해결
+                                            </td>
+                                      </tr>
+                                        <tr rowspan="1" class="agree_tr">
+                                            <th colspan="1" class="agree_th">제공 항목</th>
+                                            <td colspan="1" class="agree_td">예약번호, 예약자 정보(예약자명, 이메일, 휴대폰번호)
+                                                 또는 투숙자 정보(투숙자명, 이메일,휴대폰번호)
+                                            </td>
+                                        </tr>
+                                        <tr rowspan="1" class="agree_tr">
+                                            <th colspan="1" class="agree_th">이용 및 보유기간</th>
+                                            <td colspan="1" class="agree_td">개인정보 이용목적 달성시 까지
+                                                <br>단, 관계법령에 의하여 보존할 필요성이 있는 경우 그 시점까지 보존 후 지체 없이 폐기
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="agree_tfoot">
+                                        <td colspan="2">
+                                            <em>위 개인정보 제3자 제공 동의를 거부할 수 있으며, 거부할 경우 서비스 이용이 제한됩니다.</em>
+                                        </td>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 		</div>
+    </div>
+    
+    <script>
+// 		const personalAgree = document.querySelector('.personal_agree');
+		const pAgree = document.getElementById('agreeCheck');
+		wrap = document.querySelector('.wrap2');
+		close = document.querySelector('.agree_x2');
+		
+		pAgree.onclick = function(){
+			wrap.classList.remove('hidden');
+		}
+		
+		close.onclick = function(){
+			wrap.classList.add('hidden');
+		}
+	</script>
 
 <script>
     const paymentBtn = document.getElementById('paymentBtn');
@@ -208,7 +402,6 @@
         alert('결제가 완료되었습니다.');
         modal.classList.add('hidden');
     }
-
 </script>
 
 </body>

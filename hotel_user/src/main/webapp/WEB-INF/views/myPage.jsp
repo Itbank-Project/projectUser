@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
-<%@ include file="footer.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
+<!-- 현재날짜 -->
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set> 
+
 <c:set var="cpath" >${pageContext.request.contextPath }</c:set>
 
 <link rel="stylesheet" href="${cpath }/resources/css/myPage.css">
@@ -108,9 +114,9 @@
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${list.re_payment }" />
 					</td>
 					<td id="re_cancelYesOrNo">${list.re_cancelYesOrNo }</td>
-					<td><button style="width: 40px; height: 30px; background-color:#74b9ff; " class="reviewBtn" ${list.re_cancelYesOrNo == 'N' ? "" : "disabled" }>리뷰</button></td>
+					<td><button style="width: 50px; height: 30px; background-color:#74b9ff; " class="reviewBtn" ${list.re_cancelYesOrNo == 'N' && date > re_outdate ? "" : "disabled" }>리뷰</button></td>
 					<td><input style="background-color:#fd79a8; height: 30px;" class="cancelBtn" id="${list.re_idx}"
-						type="button" name="re_cancelYesOrNo" value="취소" ${list.re_cancelYesOrNo == 'N' ? "" : "disabled" } onclick="changeValue('${list.re_idx}')"></td>
+						type="button" name="re_cancelYesOrNo" value="취소" ${list.re_cancelYesOrNo == 'N' && list.canTime > 1 ? "" : "disabled" } onclick="changeValue('${list.re_idx}')"></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -147,7 +153,7 @@
 				<div class="rating">
 					<input type="radio" id="rating_1_star5" name="review_score" value="5"><label for="rating_1_star5"></label>
 					<input type="radio" id="rating_1_star4" name="review_score" value="4"><label for="rating_1_star4"></label>
-				        <input type="radio" id="rating_1_star3" name="review_score" value="3"><label for="rating_1_star3"></label>
+				    <input type="radio" id="rating_1_star3" name="review_score" value="3"><label for="rating_1_star3"></label>
 					<input type="radio" id="rating_1_star2" name="review_score" value="2"><label for="rating_1_star2"></label>
 					<input type="radio" id="rating_1_star1" name="review_score" value="1"><label for="rating_1_star1"></label>
 				</div>
@@ -166,7 +172,7 @@
 	                <div>이용후기를 솔직하게 작성하여</div>
 	                <div>다른 고객님들의 선택을 도와주세요!</div>
 	            </div>    
-	            <p><textarea name="review_opinion" cols="35" rows="5" style="resize: none;"></textarea></p>
+	            <p><textarea name="review_opinion" cols="35" rows="5" style="resize: none;" required></textarea></p>
 	            <p><input type="submit" value="작성완료"></p>
             </form>
         </div>
@@ -250,7 +256,10 @@
 			if(text == 1){
 				alert('리뷰가 등록되었습니다');
 				location.href= cpath;
-			}
+			} else if(text == -1 ){
+				  alert('이미 등록하신 리뷰입니다.');
+				  location.href = "myPage";
+			  }
 		})
     }
 	
@@ -268,6 +277,7 @@
  	//예약 취소
 	
 	function changeValue(id) {
+			  if(confirm('정말 취소하시겠습니까 ???') == true){
 		var box = document.getElementById(id);
 		console.log(id);
 
@@ -281,17 +291,15 @@
 		fetch(url, opt)
 		.then(resp => resp.text())
 		.then(text => {
-			console.log(text)
+			console.log('text : ',text)
 			if(text == 1) {
 			  box.readOnly = true;	
-			  if(confirm('정말 취소하시겠습니까 ???') == true){
 				  location.href = "myPage";
-			  }
-			  else{
-				  return;
-			  }
+			} else if(text == -1){
+				alert('이미 이용하신 객실입니다 !!');
 			}
 		});
+		  }
 		
 	}
 </script>

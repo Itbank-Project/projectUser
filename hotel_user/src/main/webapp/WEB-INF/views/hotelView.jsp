@@ -30,83 +30,55 @@
 		width: auto;
 		height: 500px;
 	}
+	
+	#hidden,.hidden{
+		display: none;
+	}
+	
+	.review-list {
+		 border-bottom: 1px solid #dadada;
+		 margin-bottom: 15px;
+	}
+	
+	.review-content {
+		margin-bottom: 15px;
+	}
+	
+	#load {
+		 color: #fd79a8;
+		 cursor: pointer;
+	}
 </style>
 
-   <div style="width: 768px; margin: auto; height:45px; display: flex; justify-content: space-between; margin-bottom: 10px;">
-        <form method="post">
+<div style="width: 1000px; margin: auto; height:45px; display: flex; justify-content: space-between; margin-bottom: 10px;">
         <!-- 날짜 선택하고 객실 보기 -->
         <div class="Floating__StyledFloatingBtnRedBot-ej6lt-0 cIjWgG">
-            <div class="fixed-wrapper">
-                <div class="innerButton">
-                    <div class="tooltip-wrapper hidden">
-                        <img src="https://cdn.dailyhotel.com/ux/btn-big-red-tooltip@2x.png"
-                            srcset="https://cdn.dailyhotel.com/ux/btn-big-red-tooltip@3x.png" alt>
-                    </div>
-                    <div class="container"><a class="btn js-click-modal">날짜 선택하고 객실 보기</a>
-                        <div class="modal">
-                            <div class="top">
-                                <div class="left">
-                                    <span class="tt"></span>
-                                    <span class="date">체크인</span>
-                                </div>
-                                <div class="mid">
-                                    <img src="https://cdn.dailyhotel.com/ux/ic-calendar-arrow.svg" width="40" height="32">
-                                </div>
-                                <div class="right">
-                                    <span class="tt right"></span>
-                                    <span class="date">체크아웃</span>
-                                </div>
-                              
-
-                            </div>
-                            
-                            		<div class="reservation">
-							    <div>
-							        <p>예약일</p>
-							        <input name="indata" class="dataSelector" placeholder="ex)2021-12-25" />
-							        <input type="hidden" name="ro_ho_name"  value="" />
-							    </div>	
-                            </div>
-                            
-                            
-                            <div class="modal-body">
-                                <div id="day">
-                                    <div id="calendar-left"><label onclick="prevClaendar()">《</label></div>
-                                    <div id="calendarYM">yyyy년 m월</div>
-                                    <div id="calendar-right"><label onclick="nextCalendar()">》</label></div>
-                                  </div>
-                                  <table id="calendar"  border="3" >
-                                        <tr id="week">
-                                            <th style="color: #c33;">일(Sun)</th>
-                                            <th>월(Mon)</th>
-                                            <th>화(Tue)</th>
-                                            <th>수(Wed)</th>
-                                            <th>목(Thu)</th>
-                                            <th>금(Fri)</th>
-                                            <th style="color: #2993cc;">토(Sat)</th>
-                                        </tr>
-                                        
-                                  </table>
-                            
-                                 <div class="select-date">
-                                     <div class="Calendar__LowestPriceGuideTxt-t03w0s-1 OihNn">
-                                        당일 숙박 최저가 기준으로 표시됩니다.
-                                     </div>
-                                     <button  type="submit" class="dateBtn">체크인 날짜를 선택해주세요</button>
-                                 </div> 
-                                <div class="close-modal"><a class="closebtn js-close-modal">Close</a></div>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+       		<button id="reservation-modal-Btn">날짜 선택하고 객실 보기</button>   
         </div>
-        </form>
  </div> 
+		<!--  예약창 띄우기 -->
+         <div class="reservation_modal hidden">
+        <div class="reservation_modal_overlay"></div>   <!--나머지 배경 어둡게 만드는 영역-->
+        <div class="reservation_modal_content">         <!--표시하고 싶은 내용-->
+        
+	           	<button class="reservation-btn" >
+        		    <form id="reservationForm" method="POST">
+        		    	<div class="reservation">
+						<input name="indata" type="date" class="dataSelector" placeholder="ex)2021-12-24 ~ 2021-12-31" />
+						</div>
+						<button class="reservationBtn" type="submit">검색</button>
+		            </form> <!--  end of reservationForm -->
+				</button>	 <!--  end of reservation -->
+        </div>	<!-- end of reservation_modal_overlay -->
+    </div> 	<!-- end of reservation_modal hidden -->
 
-    <div style="width: 768px; margin: auto;">
+ 
+ 
+ 
+
+    <div style="width: 1000px; margin: auto;">
       	<div>
-            <img src="${cpath }/uploadFile/${map.dto.ho_uploadfile}" width="100%">
+            <img src="http://182.212.181.172:9000/${map.dto.ho_uploadfile }" width="100%">
       	</div>
 
         <div class="detail-header">
@@ -127,64 +99,117 @@
         </div>
 
         <div class="detail-bg detail-true-review">
-            <div class="diGnvT">
-                <h1 class="detail-title">리뷰</h1>
-                <div class="satisfaction">
-                    <span class="evaluation">(${map.count } 명 평가)</span>
-                </div>
-         </div>
-            <c:forEach var="review" items="${map.showReview }">
-	        <div class="LinesEllipsis review" >
-	          ${review.REVIEW_OPINION }
-	        </div>
-	        <div class="review-info">
-	            <span class="evaluation">${review.REVIEW_SCORE }.0점 </span>
-	            <span class="rate">${review.REVIEW_CU_ID }</span>
-	        </div>
-            </c:forEach>
-          	
-                <div class="more-review">
-					<div class="page-wrapper trigger">
-					  <a class="btn-review" href="#">리뷰 더보기</a>
-					</div>
-<!-- 					Modal -->
-					<div class="modal-wrapper-review">
-					  <div class="modal-review">
-					    <div class="head-review">
-					      <div class="true-review">트루 리뷰</div>
-					      <div class="close-review"><a class="btn-close trigger" href="#">x</a></div>
-					    </div>
-					    <div class="content-review">
-					        <div class="good-job">
-					          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-					         	<div class="review-body">
-						         	<div class="review-box-user">
-							         		<div class="review-evaluation">
-		                                 		<p>=== 리뷰 평가 ====</p>
-		                              		</div>   
-				                            <div class="review-graph">
-				                           	    <p>=== 만족, 불만족 ===</p>
-				                            </div>   
-					                              <div class="multiple-reviews">
-					                                 <h2>${map.count }개의 리뷰</h2>
-					                        <c:forEach var="review" items="${map.showReview }">
-					                                 <div class="review-user">
-					                                    <span>${review.REVIEW_SCORE }.0점 </span><span>=== 방 타입 === </span>
-					                                    <div>  ${review.REVIEW_OPINION }</div>
-					                                    <span> ${review.REVIEW_CU_ID } </span><span>${review.REVIEW_CREDATE }</span>
-					                                 </div>   
-					                                 <div>--------------------------------------------</div>
-					                       </c:forEach>    
-					                              </div>  
-							         		</div>
-						         	</div>
-					        </div>
-					    </div> <!-- end content-review -->
-					  </div>
-					</div>
-					</div>
-<!--              모달창 리뷰 끝 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        	<div class="diGnvT">
+			<h1 class="detail-title">리뷰</h1>
+			<div class="satisfaction">
+			    <span class="evaluation">(${map.count } 명 평가)</span>
+			</div>
+        	</div>
+		<div class="review-container"></div>
+            	<div id="load">더보기</div>
+        </div>
+	<script type="text/javascript">
+        	var totalCnt = ${map.count};
+        	var cnt = 4;
+        	var i, id, score, content, rcontent, reviewList, reviewInfo, reviewScore, cuID, reviewContent, replyContent;
+        	const moreBtn = document.getElementById('load');
+        	const reviewContainer = document.querySelector('.review-container');
+        	var plus = 0;
+        	<c:forEach var="list" items="${map.showReview}">
+        	
+        	if(plus <= 5){
+              score = parseInt("${list.review_score}");
+              id = "${list.review_cu_id}";
+              content = "${list.review_opinion}";
+              rcontent = "${list.reply_opinion}";
+              
+              reviewList = document.createElement('div');
+              reviewList.className = 'review-list';
+              reviewInfo = document.createElement('div');
+              reviewInfo.className = 'review-info';
+              reviewList.appendChild(reviewInfo);
+              reviewContainer.appendChild(reviewList);
+              
+              reviewScore = document.createElement('span');
+              reviewScore.className = 'review-score';
+              reviewScore.innerHTML = score + '점 ';
+  
+              cuID = document.createElement('span');
+              cuID.className = 'cuID';
+              cuID.innerHTML = id;
+              reviewInfo.appendChild(reviewScore);
+              reviewInfo.appendChild(cuID);
+              
+              reviewContent = document.createElement('div');
+              reviewContent.className = 'review-content';
+              reviewContent.innerHTML = content;
+              reviewList.appendChild(reviewContent);
+              
+              replyContent = document.createElement('div');
+              replyContent.className = 'replyContent';
+              replyContent.innerHTML = rcontent;
+              replyContent.style.color = 'red';
+              reviewList.appendChild(replyContent);
+              
+              
+          } else if(plus => totalCnt){
+             reviewList.classList.add('hidden');
+             reviewInfo.classList.add('hidden');
+             reviewScore.classList.add('hidden');
+             cuID.classList.add('hidden');
+             reviewContent.classList.add('hidden');
+              
+          }
+           console.log('++되기전 플러스 : ' + plus);
+           plus++;
+           console.log('++후 플러스 : ' + plus);
+              
+           </c:forEach>
+           
+           moreBtn.onclick = function(e) {
+                  
+               reviewContainer.innerHTML = '';
+               moreBtn.classList.add('hidden');
+                  
+              <c:forEach var="list" items="${map.showReview}">
+               
+              score = parseInt("${list.review_score}");
+              id = "${list.review_cu_id}";
+              content = "${list.review_opinion}";
+              rcontent = "${list.reply_opinion}";
+                  
+              	  reviewList = document.createElement('div');
+                  reviewList.className = 'review-list';
+                  reviewInfo = document.createElement('div');
+                  reviewInfo.className = 'review-info';
+                  reviewList.appendChild(reviewInfo);
+                  reviewContainer.appendChild(reviewList);
+                  
+                  reviewScore = document.createElement('span');
+                  reviewScore.className = 'review-score';
+                  reviewScore.innerHTML = score + '점 ';
+                  cuID = document.createElement('span');
+                  cuID.className = 'cuID';
+                  cuID.innerHTML = id;
+                  reviewInfo.appendChild(reviewScore);
+                  reviewInfo.appendChild(cuID);
+                  
+                  reviewContent = document.createElement('div');
+                  reviewContent.className = 'review-content';
+                  reviewContent.innerHTML = content;
+                  reviewList.appendChild(reviewContent);
+                  
+                  replyContent = document.createElement('div');
+                  replyContent.className = 'replyContent';
+                  replyContent.innerHTML = rcontent;
+                  replyContent.style.color = 'red';
+                  reviewList.appendChild(replyContent);
+                  
+               </c:forEach>
+         }
+        </script>
+		
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
      <script> 
        var posY;
         
@@ -200,22 +225,22 @@
             posY = $(window).scrollTop(posY);
          });
  </script> 
-        </div>         
+           
         <hr>
         <div>
             <h3>객실 선택</h3>
             <div class="slideshow-container">
                 <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room2.jpg" style="width: 100%; height: 350px;">
+                    <img src="${cpath }/resources/img/room2.jpg" style="width: 100%;">
                 </div>
                 <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room3.jpg" style="width: 100%; height: 350px;">
+                    <img src="${cpath }/resources/img/room3.jpg" style="width: 100%;">
                 </div>
                 <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room4.jpg" style="width: 100%; height: 350px;">
+                    <img src="${cpath }/resources/img/room4.jpg" style="width: 100%;">
                 </div> 
                 <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room5.jpg" style="width: 100%; height: 350px;">
+                    <img src="${cpath }/resources/img/room5.jpg" style="width: 100%;">
                 </div> 
             </div>
             
@@ -225,18 +250,7 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
             </div>
-		
-       <div style="height: 44px;
-            border-radius: 2px;
-            border: 1px solid rgb(218, 73, 119);
-            text-align: center;
-            cursor: pointer; 
-            margin: 20px 0px 10px;">
-                <span style="font-size: 14px;color: rgb(219, 7, 74);line-height: 44px;">날짜 선택하고 객실 더보기</span>
-            </div>
-            <p style="margin: 0px 0px 10px; text-align: center;font-size: 12px; color: rgb(77, 77, 77);">캘린더에서 날짜를 선택하시고 특가 객실을 확인하세요.</p>
         </div>
-        <br>
         <div class="h-comment">
             <section class="hotel-comment">
                 <img src="https://cdn.dailyhotel.com/ux/icon-detail-daily-comment.svg" alt="데일리 코멘트 아이콘">
@@ -536,7 +550,7 @@
             }
             slides[slideIndex-1].style.display = "block";  
             dots[slideIndex-1].className += " active";
-            setTimeout(showSlides, 2500); // 2.5초마다 이미지 바뀜
+            setTimeout(showSlides, 3000); // 3초마다 이미지 바뀜
         }
 
     </script>
@@ -562,18 +576,37 @@
     	  });
     	});
     </script>
-     <script type="text/javascript" >
-     // 달력
-        buildCalendar();
-      </script>
 
-   <script>
+	 <script>
+	 // 예약 모달창
+		 const reservationBtn = document.getElementById('reservation-modal-Btn');
+		 const reservation_modal = document.querySelector('.reservation_modal');
+		 const reservation_modal_overlay = document.querySelector('.reservation_modal_overlay');
+		
+		 reservationBtn.onclick = function ()  {
+			 reservation_modal.classList.remove('hidden');
+			
+		 }
+		 
+		 reservation_modal_overlay.onclick = function() {
+			 reservation_modal.classList.add('hidden');
+		 }
+
+ </script>
+
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+
+   <script >
 	// 예약 달력
-	 
+	flatpickr.localize(flatpickr.l10ns.ko);
+	
+
 	 var dataSelector = document.querySelector('.dataSelector');
 	 dataSelector.flatpickr( {
 	    mode: "range",
 	    dateFormat: "Y-m-d",
+	    local:'ko'
 	
 	});
  </script>

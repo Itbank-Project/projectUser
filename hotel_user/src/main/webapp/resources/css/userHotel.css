@@ -1,21 +1,5 @@
 @charset "utf-8";
-/* .modal-login { */
-/*     position: fixed; */
-/*     top: 0; */
-/*     left: 0; */
-/*     width: 100%; */
-/*     height: 100%; */
-/*     display: flex; */
-/*     margin-left: 53%; */
-/* } */
-/* .modal_content{ */
-/*     background-color: white; */
-/*     width: 320px; */
-/*     height: 110px; */
-/*     border: 1px solid gray; */
-/*     padding: 10px; */
 
-/* } */
 .hidden {
     display: none;
 }
@@ -24,7 +8,7 @@
     z-index: 5;
     left: 0px;
     right: 0px;
-    max-width: 768px;
+    max-width: 1000px;
     width: 90%;
     margin: 0px auto;
     cursor: pointer;
@@ -297,13 +281,7 @@ img {
 }
 
 /*여기서부터 모달창(날짜)*/
-.modal-body {
-font-size: 16px;
-line-height: 18px;
-font-weight: 300;
-text-align: center;
 
-}
 
 .container > .btn {
 padding: 20px 40px;
@@ -311,87 +289,9 @@ font-size: 30px;
 border-radius: 40px;
 }
 .container > .clostbtn{
-  
     padding: 20px 40px;
     font-size: 30px;
     border-radius: 40px;
-}
-.modal {
-    display: flex;
-    flex-flow: column;
-    background: #fff;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1);
-    top: 100%;
-    position: fixed;
-    left: 0;
-    text-align: left;
-    }
-.modal > div {
-    width: 700px;	/*변경*/
-    margin: auto;
-    margin-bottom:0 ;
-    margin-top: 0;
-    
-}
-.reservation {
-	text-align: right;
-	
-}
-.reservation  input {
-	width: 198px;
-	border-radius: 3px;
-}
-.modal .top {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    padding: 0px 24px 0;
-    height: 124px;
-    margin-top: 20px;	/*변경*/
-   
-}
-.modal .top  .tt {
-    display: block;
-    height: 29px;
-    padding: 12px 0 2px;
-    text-align: left;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.33;
-    color: #888;
-}
-.modal  .top .left  {
-    height: 80px;
-}
-.modal  .top  .date {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.33;
-    color: #4d4d4d;
-   
-}
-.modal  .top  .mid {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    margin-left: -20px;
-}
-.modal  .top  .mid img {
-    display: block;
-    margin-top: 28px;
-}
-.margin .top .tt.right {
-    text-align: right;
-}
-
-.modal, .modal-body {
-font: 300 16px Lato;
-color: black;
-
 }
 .btn {
 margin: 20px 0;
@@ -399,61 +299,119 @@ color: #fff;
 position: relative;
 transition: all .4s ease;
 cursor: pointer;
+
 }
-.closebtn{
-    background: linear-gradient(to right);
-    padding: 10px 25px;
-    display: inline-block;
-    border-radius: 25px;
-    margin: 20px 0;
-    color: black;
-    position: relative;
-    transition: all .4s ease;
-    cursor: pointer;
-    font-weight: bold;
-}
-.close-modal {
-  text-align: right;
-}
-.btn:hover {
-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-}
-.container.modal-open .modal {
-top: 0;
+#reservation-modal-Btn {
+ border: none;
+ height: 56px;
+ background-color: rgb(219, 7, 74);
+ font-size: 18px;
+ color: white;
+ font-weight: 700;
+ line-height: 56px;
+ outline: none;
+ cursor: pointer;
+ width: 1000px;
 }
 
-/* 날짜 버튼*/
-.select-date {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    border-top: 1px solid #e7e7e7;
-    background-color: #f8f8f9;
-    width: 1180px;
-    margin: auto;
-    font-weight: bold;
+.reservation{
+width: 750px;
 }
-.OihNn {
-    height: 21px;
-    text-align: center;
-    font-size: 11px;
-    color: rgb(136, 136, 136);
+.reservation-btn {
+	text-align: right;
+	width: 760px;
+	height: 66px;
+	border:none;
+	border-radius: 32px 0 0 32px ;
+	background: white;
+	color: black;
+	cursor: pointer;
 }
-.select-date button[disabled] {
-    background-color: #e8e8e9;
-    color: #c5c5c5;
+.reservation-btn > div {
+	text-align: center;
+	
 }
-.select-date button {
-    border: none;
-    width: 1180px;
-    height: 44px;
-    border-radius: 2px;
-    padding: 1px 0 0;
-    background-color: #db074a;
-    color: #fff;
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 21px;
+.reservation_content {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 50px;
+	margin-right: 50px;
+	
+}
+
+.reservation_modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.reservation_modal_overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+}
+
+.reservation_modal_content {
+	border-radius: 32px !important;
+	background-color: white;
+	position: fixed;
+	min-width: 850px;
+	width: 50%;
+	height: 66px;
+	max-width: 500px;
+
+}
+.dataSelector {
+	height: 60px;
+	width: 750px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	
+}
+.reservationBtn {
+	border: none;
+	height: 66px;
+	width: 90px;
+	border-radius: 31px;
+	background-color: #FF385C;
+	color: white;
+	font-weight: bold;
+}
+.search-img {
+	width: 40px;
+	height: 20px;
+	background-color: #FF385C;
+}
+.hidden {
+	display: none;
+}
+
+/* 달력 */
+.flatpickr-calendar.open {
+	width: 760px;
+}
+.flatpickr-rContainer {
+	width: 760px;
+}
+.flatpickr-rContainer > div{
+	width: 760px;
+}
+.flatpickr-rContainer > .flatpickr-days > div{
+
+	width: 760px;
+	max-width: 760px;
+
+}
+.flatpickr-rContainer > .flatpickr-days > div > span{
+	width: 117px;
+	max-width: 117px;
 }

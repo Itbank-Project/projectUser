@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cpath" >${pageContext.request.contextPath }</c:set>    
 <%@ include file="header.jsp" %>
-<%@ include file="footer.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +11,29 @@
 <style>
         a{
             text-decoration: none;
-            color: inherit;
+            color: #f8585b;
         }
         
         .login{
             width: 500px;
             height: 40px;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid grey;
+        	margin-top: 30px;
+        }
+        .login::placeholder {
+        	text-align: center;
+        	font-weight: bold;
+        } 
+        .loginBtn {
+        	width: 500px;
+            height: 40px;
+        	margin-top: 30px;
+        	border-radius: 30px;
+        	border: 1px solid grey;
+        	background-color: #f8585b;
+        	font-weight: bold;
         }
 
         .find_info{
@@ -27,11 +43,9 @@
             text-align: center;
             color: #8e8e8e;
         }
-        #loginBackground {
-        	background-image: url('${cpath }/resources/img/hotelLogo_draw.png');
-        	background-repeat: no-repeat;
-        	background-position: center center;
-        	background-size: cover;
+        .find_info > a{
+           text-decoration: none;
+            color: inherit;
         }
 </style>
 </head>
@@ -43,7 +57,7 @@
         <p><input class="login" id="userId" type="text" name="cu_id" value="${cookie.userid.value }" placeholder="아이디"></p>
         <p><input class="login" id="userPw" type="password" name="cu_pw" placeholder="비밀번호"></p>
         <div id="result"></div>
-        <p><input class="login" type="submit" value="로그인"></p>
+        <p><input class="loginBtn" type="submit" value="로그인"></p>
         <p><input type="checkbox" id="idSaveCheck" name="storeid" ${not empty cookie.userid ? 'checked' : '' } >Remember me </p>
     </form>
     
