@@ -179,23 +179,7 @@
     </div>
 
 
-<script>
-	//footer 해당 메뉴 페이지 접근시 글자색 변경
-	const itemList = document.querySelectorAll('#footer-text');
-	
-	itemList.forEach(tr => tr.style.color='rgb(146, 146, 146)');
-	itemList[1].style.color='rgb(219, 7, 74)';
-</script>
 
-<script>
-	//footer 해당 메뉴 페이지 접근시 아이콘색 변경
-	const iconList = document.querySelectorAll('.iconWrapper');
-	const greyIcon = document.querySelectorAll('#greyIcon');
-	const pinkIcon = document.querySelectorAll('#pinkIcon');
-	
-	greyIcon[1].classList.add('hidden');
-	pinkIcon[1].classList.remove('hidden');
-</script>
 
 <script type="text/javascript">
 	const cpath = '${cpath}';
