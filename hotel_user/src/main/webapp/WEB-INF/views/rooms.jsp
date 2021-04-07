@@ -26,7 +26,7 @@
 	<div class="root">
         <div class="inner-section">
             <div style="position: relative;">
-                <img class="room-img" style="height: 600px; margin-top: 10px;" src="https://www.thek-hotel.co.kr/resources/skmh/images/room/img_room_view6_1.jpg">
+                  <img class="room-img" style="height: 600px; margin-top: 10px;" src="http://182.212.181.172:9000/${map.roomList.ro_uploadfile }">
             </div>
         </div>
         <div class="inner-section">
