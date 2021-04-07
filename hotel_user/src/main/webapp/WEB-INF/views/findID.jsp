@@ -19,7 +19,7 @@
             width: 300px;
             height: 45px;
         }
-        .findId_btn{
+        #findId_btn{
             margin-top: 20px;
             width: 300px;
             height: 45px;
