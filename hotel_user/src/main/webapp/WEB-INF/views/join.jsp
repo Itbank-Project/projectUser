@@ -236,7 +236,7 @@ $('#pnum').blur(function() {
 	var pnum = document.getElementById('pnum').value;
 	var pnum_check = document.getElementById('pnum_check');
 	console.log(pnum);
-	var reg = /^\d{3}\d{4}\d{4}$/;
+	var reg = /^\d{3}-\d{4}-\d{4}$/;
 	
 	if($('#pnum').val() == ''){
 		$('#pnum_check').text('휴대폰 번호를 입력하세요');
