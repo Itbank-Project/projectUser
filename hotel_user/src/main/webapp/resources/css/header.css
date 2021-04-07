@@ -22,16 +22,56 @@ body {
     display: flex;
     margin-left: 53%;
     z-index: 10;
+    opacity: 0.9;
 }
 .modal_content{
     background-color: white;
     width: 320px;
     height: 110px;
-    border: 1px solid gray;
     padding: 10px;
     z-index: 10;
-
+    box-shadow: 2px 2px #b2bec3;
+    animation: appear .8s cubic-bezier(.77,0,.175,1) forwards;
+    border-radius: 5px;
 }
+
+.login-modal-section{
+	padding: 5px;
+	}
+	
+.modal-box{
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;	
+}
+	
+.text-login{
+	font-size: 13pt;
+	font-weight: bold;
+}
+	
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dissappear {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
 .hidden {
     display: none;
 }
