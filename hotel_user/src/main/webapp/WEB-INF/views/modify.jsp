@@ -25,6 +25,9 @@
             height: 45px;
             border: none;
             font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: #f8585b;
         }
     </style>
 </head>
