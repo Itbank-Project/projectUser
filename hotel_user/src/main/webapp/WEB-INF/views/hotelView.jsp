@@ -208,23 +208,6 @@
                </c:forEach>
          }
         </script>
-		
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-     <script> 
-       var posY;
-        
-       $(".btn-review").on("click", function(e){
-          posY = $(window).scrollTop();
-            
-            $("html, body").addClass("not_scroll");
-            $(".review-body").addClass("scroll");
-        });
-        
-       $(".btn-close").on("click", function(){
-            $("html, body").removeClass("not_scroll");
-            posY = $(window).scrollTop(posY);
-         });
- </script> 
            
         <hr>
         <div>
@@ -577,7 +560,8 @@
     	});
     </script>
 
-	 <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script>
 	 // 예약 모달창
 		 const reservationBtn = document.getElementById('reservation-modal-Btn');
 		 const reservation_modal = document.querySelector('.reservation_modal');
@@ -585,14 +569,16 @@
 		
 		 reservationBtn.onclick = function ()  {
 			 reservation_modal.classList.remove('hidden');
-			
+			 posY = $(window).scrollTop();
+			 $("html, body").addClass("not_scroll");
 		 }
 		 
 		 reservation_modal_overlay.onclick = function() {
 			 reservation_modal.classList.add('hidden');
+			 $("html, body").removeClass("not_scroll");
+			 posY = $(window).scrollTop(posY);
 		 }
-
- </script>
+    </script>
 
 <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
