@@ -28,6 +28,7 @@
                  room.ro_ho_name,
                  room.ro_limitperson,
                  room.ro_badtype,
+		 room.ro_uploadfile,
                  hotel.ho_check_in,
                  hotel.ho_check_out,
                  room.ro_description
