@@ -28,12 +28,13 @@
         } 
         .loginBtn {
         	width: 500px;
-            height: 40px;
+            	height: 40px;
         	margin-top: 30px;
         	border-radius: 30px;
         	border: 1px solid grey;
         	background-color: #f8585b;
         	font-weight: bold;
+		outline: none;
         }
 
         .find_info{
