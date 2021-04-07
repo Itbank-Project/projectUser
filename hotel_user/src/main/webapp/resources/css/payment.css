@@ -11,13 +11,13 @@
     padding-top: 11px;
     padding-bottom: 11px;
 }
-h3{
+.payment{
 	color: #4D4D4D;
-    width: 576px;
-    text-align: center;
-    padding-right: 96px;
-    padding-left: 96px;
+	font-size: 16pt;
+	margin-left: 430px;
+	margin-top: 10px;
 }
+
 .paymentMainDiv {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -185,7 +185,7 @@ h3{
 .kakaopay {
 	justify-content: center;
 	align-items: center;
-	margin-left: 200px;
+	margin-left: 300px;
 	margin-bottom: 10px;
 }
 
