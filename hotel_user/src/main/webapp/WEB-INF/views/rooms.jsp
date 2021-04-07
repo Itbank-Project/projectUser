@@ -120,5 +120,8 @@
             </div>
         </div>
     </div>
+    <div class="inner-section">
+    	<div class="blank"></div>
+    </div>
 </body>
 </html>
