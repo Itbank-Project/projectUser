@@ -143,7 +143,7 @@
 
 		<div class="payHeader">
 			<div><a href="javascript:history.back();"><img src="${cpath }/resources/img/arrow.jpg"></a></div>
-        	<h3>결제하기</h3>
+        	<div class="payment">결제하기</div>
         </div>
         <div class="nameInsert">
             <div class="hotelName">${map.roomList.ro_ho_name}</div>
@@ -235,7 +235,7 @@
 
         <div class="infoDiv">
             <div>예약 금액</div>
-            <div>(총 ${map.fewDay}박)<fmt:formatNumber value="${map.result }" pattern="#,###" />원</div>
+            <div>(총 ${map.fewDay}박) <fmt:formatNumber value="${map.result }" pattern="#,###" />원</div>
         </div>
 
         <div class="discount">
@@ -257,7 +257,7 @@
         <div class="refundPolicy">
             <ul>
                 <li>
-                    <span>2021.04.28(수) 16:59</span>까지 <span>무료</span>로 예약 취소를 할 수 있는 상품입니다. 이후 예약을 변경하거나 취소할 경우 환불 수수료가 부과될 수 있습니다. 
+                    <span id="cancelDate_span"></span>까지 <span>무료</span>로 예약 취소를 할 수 있는 상품입니다. 이후 예약을 변경하거나 취소할 경우 환불 수수료가 부과될 수 있습니다. 
                 </li>
                 <li>
                     예약을 계속 진행하시려면 필수사항 동의 후 [결제하기] 버튼을 눌러주세요.
@@ -362,15 +362,45 @@
  		</div>
     </div>
     
+    
+    
     <script>
-// 		const personalAgree = document.querySelector('.personal_agree');
+    // 취소 날짜 구하기(체크인 하루전)
+    const checkIn = '${map.dayStart }';
+    
+    var cancelDate = new Date(checkIn);
+    
+	 // 날짜(일) 
+	 cancelDate.setDate(cancelDate.getDate()-1)
+	 cancelDate = getFormatDate(cancelDate);
+	 
+	 function getFormatDate(cancelDate){
+		    var year = cancelDate.getFullYear();              	//yyyy
+		    var month = (1 + cancelDate.getMonth());          	//M
+		    month = month >= 10 ? month : '0' + month;  		//month 두자리로 저장
+		    var day = cancelDate.getDate();                   	//d
+		    day = day >= 10 ? day : '0' + day;          		//day 두자리로 저장
+		    return  year + '.' + month + '.' + day;       		//'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+		}
+	 
+	 const cancelDate_span = document.getElementById('cancelDate_span');
+	 cancelDate_span.innerText = cancelDate + '일 16시 59분';
+	 
+    </script>
+    
+    
+    <script>
+
 		const pAgree = document.getElementById('agreeCheck');
+		
 		wrap = document.querySelector('.wrap2');
 		close = document.querySelector('.agree_x2');
 		
 		pAgree.onclick = function(){
-			wrap.classList.remove('hidden');
-		}
+			if(pAgree.checked){
+				wrap.classList.remove('hidden');
+			}
+		}		
 		
 		close.onclick = function(){
 			wrap.classList.add('hidden');
