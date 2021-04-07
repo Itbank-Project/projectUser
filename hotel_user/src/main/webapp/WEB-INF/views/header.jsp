@@ -15,24 +15,7 @@
 <!-- 구글 폰트 한글 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-<style>
-	.login-modal-section{
-		/* padding: 5px; */
-		/* width: 100%; */
-	}
-	
-	.modal-box{
-		display: flex;
-		justify-content: space-between;
-		margin: 0 auto;
-		
-	}
-	
-	.text-login{
-		font-size: 13pt;
-		font-weight: bold;
-	}
-</style>
+
 </head>
 <body>
 <!-- 헤더 파일 -->
@@ -65,14 +48,14 @@
 					</div>
 				</div>
 				<div style="font-size: 9pt; margin: 10px 0 10px;">호텔자바에 회원가입하시고 다양한 혜택을 누리세요.</div>
-				<div style="display: flex;">
+				<div style="display: flex; justify-content: space-between;">
 					<div>
 						<a href="${cpath }/login"><button
-								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; margin-right: 3px;">로그인</button></a>
+								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; margin-right: 3px; cursor: pointer;">로그인</button></a>
 					</div>
 					<div>
 						<a href="${cpath }/join"><button
-								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px;">회원가입</button></a>
+								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; cursor: pointer;">회원가입</button></a>
 					</div>
 				</div>
 			</div>
@@ -89,7 +72,7 @@
 					</div>
 				</div>
 				<div style="font-size: 9pt; margin: 10px 0 10px;">자바호텔에 오신걸 환영합니다.</div>
-				<div style="display: flex;">
+				<div style="display: flex; justify-content: space-between;">
 					<div>
 					<a href="${cpath }/modify"><button
 							style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; margin-right: 3px;">정보수정</button></a>
