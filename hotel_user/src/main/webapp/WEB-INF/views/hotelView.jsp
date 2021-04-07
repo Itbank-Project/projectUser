@@ -40,13 +40,31 @@
 		 margin-bottom: 15px;
 	}
 	
-	.review-content {
-		margin-bottom: 15px;
-	}
-	
 	#load {
 		 color: #fd79a8;
 		 cursor: pointer;
+	}
+	
+	/*  리뷰부분  */
+	.review-score {
+		font-size: 18px;
+		font-weight: bold;
+		color: #fd79a8;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, .75);
+	}
+	.cuID {
+		font-size: 12px;
+		color: #888;
+	}
+	.review-content {
+		margin-left: 20px;
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
+	.replyContent {
+		font-size: 15px;
+		margin-left: 40px;
+		margin-bottom: 10px;
 	}
 </style>
 
@@ -122,6 +140,7 @@
               id = "${list.review_cu_id}";
               content = "${list.review_opinion}";
               rcontent = "${list.reply_opinion}";
+              ho_name = "${map.dto.ho_name}";
               
               reviewList = document.createElement('div');
               reviewList.className = 'review-list';
@@ -132,7 +151,7 @@
               
               reviewScore = document.createElement('span');
               reviewScore.className = 'review-score';
-              reviewScore.innerHTML = score + '점 ';
+              reviewScore.innerHTML = score + ' 점 ';
   
               cuID = document.createElement('span');
               cuID.className = 'cuID';
@@ -145,12 +164,13 @@
               reviewContent.innerHTML = content;
               reviewList.appendChild(reviewContent);
               
-              replyContent = document.createElement('div');
-              replyContent.className = 'replyContent';
-              replyContent.innerHTML = rcontent;
-              replyContent.style.color = 'red';
-              reviewList.appendChild(replyContent);
-              
+              if(rcontent != ''){
+            	  replyContent = document.createElement('div');
+                  replyContent.className = 'replyContent';
+                  replyContent.innerHTML = '❣ ️' + ho_name + ' : ' + rcontent;
+                  replyContent.style.color = '#a29bfe';
+                  reviewList.appendChild(replyContent);
+              }
               
           } else if(plus => totalCnt){
              reviewList.classList.add('hidden');
@@ -187,7 +207,7 @@
                   
                   reviewScore = document.createElement('span');
                   reviewScore.className = 'review-score';
-                  reviewScore.innerHTML = score + '점 ';
+                  reviewScore.innerHTML = score + ' 점 ';
                   cuID = document.createElement('span');
                   cuID.className = 'cuID';
                   cuID.innerHTML = id;
@@ -202,7 +222,7 @@
                   replyContent = document.createElement('div');
                   replyContent.className = 'replyContent';
                   replyContent.innerHTML = rcontent;
-                  replyContent.style.color = 'red';
+                  replyContent.style.color = '#a29bfe';
                   reviewList.appendChild(replyContent);
                   
                </c:forEach>
