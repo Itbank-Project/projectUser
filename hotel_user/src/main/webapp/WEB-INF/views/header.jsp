@@ -65,10 +65,10 @@
 					</div>
 				</div>
 				<div style="font-size: 9pt; margin: 10px 0 10px;">호텔자바에 회원가입하시고 다양한 혜택을 누리세요.</div>
-				<div style="justify-content: space-between;">
+				<div style="display: flex;">
 					<div>
 						<a href="${cpath }/login"><button
-								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px;">로그인</button></a>
+								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; margin-right: 3px;">로그인</button></a>
 					</div>
 					<div>
 						<a href="${cpath }/join"><button
