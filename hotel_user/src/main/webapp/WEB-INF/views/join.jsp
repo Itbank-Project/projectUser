@@ -58,15 +58,16 @@ margin-top: 35px;
 	width: 260px;
 	text-align: right;
 }
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://bpmaker.giffy.me/userdata/user/48/48251/866/parts.js"></script>
 </head>
 <body>
 <c:set var="cpath" value="${pageContext.request.contextPath }" />
 	
 <body>	
+    
 <div id="joinBackground" style="width: 768px; margin: auto; justify-content: center; align-items: center; text-align: center; margin-top: 100px;">			
 			
 			<form id="joinForm">
@@ -99,10 +100,11 @@ margin-top: 35px;
 						<input class="join-input" style="width: 128px; text-align: right;" id="birthYear" name="cu_birthYear" type="text"  placeholder="생년(4자)" required>
 						<input class="join-input" style="width: 128px; text-align: right;" id="birthMonth" name="cu_birthMonth" type="text" placeholder="월" required>
 						<input class="join-input" style="width: 128px; text-align: right;" id="birthDay" name="cu_birthDay" type="text" placeholder="일" required>
-						<p id="age_check" class="w3-text-red"></p>
+						<p id="age_check"></p>
 					
 					
 						<div><input class="join-input" id="pnum" name="cu_pnum" type="text" placeholder="전화번호 입력" required></div>
+						<p id="pnum_check"></p>
 					
 						<div id="sendMailForm">
 							<div>
@@ -229,8 +231,30 @@ $('#birthYear').blur(function() {
 	}
 }); 
 
+// 휴대폰 정규식
+$('#pnum').blur(function() {
+	var pnum = document.getElementById('pnum').value;
+	var pnum_check = document.getElementById('pnum_check');
+	console.log(pnum);
+	var reg = /^\d{3}\d{4}\d{4}$/;
 	
-// 이메일 인증	
+	if($('#pnum').val() == ''){
+		$('#pnum_check').text('휴대폰 번호를 입력하세요');
+		$('#pnum_check').css('color', 'red');
+		$('#pnum').focus();
+		return;
+	} else if(true === reg.test(pnum))  {
+		pnum_check.innerText = '';
+	} else {
+		pnum_check.innerText = '휴대폰 번호를 제대로 입력해주세요';
+		$('#pnum_check').css('color', 'red');
+		$('#pnum').select();
+	}
+	
+	
+});
+
+
 // 인증메일 발송
 const sendMailForm = document.getElementById('sendMailForm');
 const sendMailMsg = document.getElementById('sendMailMsg');
