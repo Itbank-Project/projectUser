@@ -400,7 +400,7 @@ table {
 									</p>
 									<span class="hotel_body">
 										<div class="hotel_des" style="height: 35px;">
-											<span style="font-family: 'Single Day', cursive;">${map.HO_DESCRIPTION }</span>
+											<span>${map.HO_DESCRIPTION }</span>
 										</div>
 										<button style="cursor: pointer; border-radius: 24px; padding: 6px 24px; background-color: #585858; margin-top:50px; color: white;">자세히보기+</button>
 									</span>
