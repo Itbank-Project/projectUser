@@ -13,7 +13,7 @@ public class CalendarDTO {
 	private String calendar_pk, calendar_ro_pk, calendar_date;
 	private int calendar_count, calendar_price;
 	private String ro_roomtype, ro_limitperson, ro_badtype, ro_description;
-	private String ho_check_in, ho_check_out, ro_ho_name, day;
+	private String ho_check_in, ho_check_out, ro_ho_name, day, ro_uploadfile;
 
 	public String getCalendar_pk() {
 		return calendar_pk;
@@ -92,6 +92,12 @@ public class CalendarDTO {
 	}
 	public void setDay(String day) {
 		this.day = day;
+	}
+	public String getRo_uploadfile() {
+		return ro_uploadfile;
+	}
+	public void setRo_uploadfile(String ro_uploadfile) {
+		this.ro_uploadfile = ro_uploadfile;
 	}
 
 
