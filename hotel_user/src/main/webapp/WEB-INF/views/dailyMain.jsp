@@ -357,7 +357,7 @@ table {
 		</div>
 			<div class="section-blank2"></div>
 			<div class="main-input" data-aos="fade-up" data-aos-duration="500">
-				<input class="main_input_search" id="search" onkeyup="filter()" type="text" placeholder="검색쌉가능 !!">
+				<input class="main_input_search" id="search" onkeyup="filter()" type="text" placeholder="">
 				<div class="search_result">
 					<div class="hotel-list hotel-list-scroll">
 						<c:forEach var="dto" items="${map.list}">
