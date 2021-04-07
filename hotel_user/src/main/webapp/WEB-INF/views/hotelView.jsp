@@ -66,6 +66,9 @@
 		margin-left: 40px;
 		margin-bottom: 10px;
 	}
+	.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover {
+		color: grey;
+	}
 </style>
 
 <div style="width: 1000px; margin: auto; height:45px; display: flex; justify-content: space-between; margin-bottom: 10px;">
@@ -612,6 +615,7 @@
 	 dataSelector.flatpickr( {
 	    mode: "range",
 	    dateFormat: "Y-m-d",
+	    minDate: "today",
 	    local:'ko'
 	
 	});
