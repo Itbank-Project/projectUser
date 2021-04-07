@@ -21,7 +21,7 @@
 <!-- 헤더 파일 -->
 <div>
 	<div style="width: 100%; margin: 0 auto; height: 65px; border-bottom: 1px solid #dadada">
-		<div style="width: 1000px; max-width: 100%; display: flex; justify-content: space-between; align-content: center; margin: 0 auto;">
+		<div style="width: 1000px; max-width: 100%; display: flex; justify-content: space-between; align-content: center; margin: 0 auto; margin-top: 8px;">
 			<div style="margin-bottom: 10px;">
 				<div style="font-size: 30pt; font-family: 'Train One', cursive;"><a href="${cpath }">JAVA</a></div>
 			</div>
