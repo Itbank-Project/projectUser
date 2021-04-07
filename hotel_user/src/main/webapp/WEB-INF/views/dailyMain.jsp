@@ -508,7 +508,7 @@ table {
 		<div style="width: 100%; margin-bottom: 20px;">
 			<div style="border-top: 1px solid #dadada; width: 1200px; margin: 0 auto;"></div>
 		</div>
-		<div class="footer" style="width: 1000px; margin: 0 auto;">
+		<div class="footer" style="width: 1100px; margin: 0 auto;">
 			<div class="footer_section" style="display: flex; text-align: center; align-content: center;">
 				<div class="agreeAd" style="cursor: pointer; margin-right: 10px;">광고성정보수신동의</div>
 				<div class="agreeGps" style="cursor: pointer;">위치정보수신동의</div>
