@@ -14,7 +14,7 @@
 	display: none;
 }
 
-.join-input
+.join-input, .phoneNumber
 {
  	border: none;
  	border-bottom: 1px solid gray;
@@ -22,7 +22,7 @@
  	width: 402px;
  	margin-top: 35px;					
 }	
-.join-input::placeholder {
+.join-input::placeholder, .phoneNumber::placeholder {
 	text-align: center;
 	font-weight: bold;
 }	
@@ -103,7 +103,7 @@ margin-top: 35px;
 						<p id="age_check"></p>
 					
 					
-						<div><input class="join-input" id="pnum" name="cu_pnum" type="text" placeholder="전화번호 입력" required></div>
+						<div><input class="phoneNumber"  id="pnum" name="cu_pnum" onkeyup="" type="text" placeholder="전화번호 입력" required></div>
 						<p id="pnum_check"></p>
 					
 						<div id="sendMailForm">
@@ -124,7 +124,7 @@ margin-top: 35px;
 						</div>
 
 						<p class="join">
-							<input type="submit" id="joinBtn" value="Join" disabled=false>
+							<input type="submit" id="joinBtn" value="회원가입" disabled=false>
 						</p>
 				</form>
 </div>	
@@ -253,7 +253,10 @@ $('#pnum').blur(function() {
 	
 	
 });
-
+$(document).on("keyup", ".phoneNumber", function() {
+	$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+	
+});
 
 // 인증메일 발송
 const sendMailForm = document.getElementById('sendMailForm');
