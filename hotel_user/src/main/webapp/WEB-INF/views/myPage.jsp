@@ -116,7 +116,7 @@
 					<td id="re_cancelYesOrNo">${list.re_cancelYesOrNo }</td>
 					<td><button style="width: 50px; height: 30px; background-color:#74b9ff; " class="reviewBtn" ${list.re_cancelYesOrNo == 'N' && date > re_outdate ? "" : "disabled" }>리뷰</button></td>
 					<td><input style="background-color:#fd79a8; height: 30px;" class="cancelBtn" id="${list.re_idx}"
-						type="button" name="re_cancelYesOrNo" value="취소" ${list.re_cancelYesOrNo == 'N' && list.canTime > 1 ? "" : "disabled" } onclick="changeValue('${list.re_idx}')"></td>
+						type="button" name="re_cancelYesOrNo" value="취소" ${list.re_cancelYesOrNo == 'N' && list.canTime > 1 ? "" : "disabled" }  ${date > re_outdate ? "disabled" : "" } onclick="changeValue('${list.re_idx}')"></td>
 				</tr>
 			</c:forEach>
 		</table>
