@@ -75,7 +75,7 @@
 
 .hotelAddress {
 	font-size: 16px;
-	color: #74b9ff;
+	color: #eb4d4b;
 }
 
 .hotel_des {
@@ -365,18 +365,18 @@ table {
 			<div class="main-input" data-aos="fade-up" data-aos-duration="500">
 				<input class="main_input_search" id="search" onkeyup="filter()" type="text" placeholder="">
 				<div class="search_result">
-					<div class="hotel-list hotel-list-scroll"  style="z-index: 1500;">
+					<div class="hotel-list hotel-list-scroll">
 						<c:forEach var="dto" items="${map.list}">
 							<div class="hotel-section hidden"><!-- hidden -->
-								<div class="hotel-section-info" style="width: 420px; background-color: #b2bec3; background-color: rgba( 255, 255, 255, 0.5 ); margin: 0 auto;">
+								<div class="hotel-section-info" style="width: 420px; background-color: rgba( 255, 255, 255, 0.5 ); margin: 0 auto;">
 									<a href="${cpath }/hotelView/${dto.HO_NAME}/">
 									<div>
 										<strong class="hotelName" style="font-weight: 600;">"${dto.HO_NAME }"</strong>
 									</div>
 									<div class="hotelAddress">'${dto.HO_ADDRESS }'</div>
 									<span class="hotel_body">
-										<div class="hotel_des" style="margin-top:5px; height: 55px;">
-											<span>${dto.HO_DESCRIPTION }</span>
+										<div class="hotel_des" style="margin-top:5px; height: 55px; width: 350px; margin: 0 auto;">
+											<span style="word-break: break-all;">${dto.HO_DESCRIPTION }</span>
 										</div>
 									</span>
 									</a>
