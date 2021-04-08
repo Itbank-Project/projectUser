@@ -15,17 +15,22 @@
 <!-- 구글 폰트 한글 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-
+<style>
+@font-face{
+	font-family: 'Ubuntu', sans-serif, 'Noto Sans KR', sans-serif;
+	unicode-range:U+0041-005A, U+0061-007A,
+}
+</style>
 </head>
 <body>
 <!-- 헤더 파일 -->
-<div>
-	<div style="width: 1904px; height:65px; margin:0; height: 65px; border-bottom: 1px solid #dadada">
-		<div style="width: 1000px; max-width: 100%; display: flex; justify-content: space-between; align-content: center; margin: 8px 452px 0 452px;">
-			<div style="margin-bottom: 10px;">
-				<div style="font-size: 30pt; font-family: 'Train One', cursive;"><a href="${cpath }">JAVA</a></div>
+<div class="nav">
+	<div class="nav-inner">
+		<div class="nav-content-wrapper">
+			<div class="content-left">
+				<div class="hotel-logo"><a href="${cpath }">JAVA</a></div>
 			</div>
-			<div style="display: flex; margin-top: 10px; margin-bottom: 10px; align-content: center; justify-content: center;">
+			<div class="content-right">
 				<div>
 					<img id="open_submenu" height="40px" src="https://cdn.dailyhotel.com/ux/nav-short-ic@2x.png">
 				</div>
@@ -41,21 +46,19 @@
 		<c:if test="${empty login }">
 			<div class="login-modal-section">
 				<div class="modal-box">
-					<div class="text-login">로그인</div>
+					<div class="text-login">Login</div>
 					<div>
 						<img id="close_submenu" height="24px"
 							src="https://cdn.dailyhotel.com/ux/common-close-ic-gray@2x.png">
 					</div>
 				</div>
-				<div style="font-size: 9pt; margin: 10px 0 10px;">호텔자바에 회원가입하시고 다양한 혜택을 누리세요.</div>
-				<div style="display: flex; justify-content: space-between;">
+				<div class="text-modal">호텔자바에 회원가입하시고 다양한 혜택을 누리세요.</div>
+				<div class="btn-wrapper">
 					<div>
-						<a href="${cpath }/login"><button
-								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; margin-right: 3px; cursor: pointer;">로그인</button></a>
+						<a href="${cpath }/login"><button class="modal-in-btn">로그인</button></a>
 					</div>
 					<div>
-						<a href="${cpath }/join"><button
-								style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; cursor: pointer;">회원가입</button></a>
+						<a href="${cpath }/join"><button class="modal-in-btn">회원가입</button></a>
 					</div>
 				</div>
 			</div>
@@ -71,19 +74,32 @@
 							src="https://cdn.dailyhotel.com/ux/common-close-ic-gray@2x.png">
 					</div>
 				</div>
-				<div style="font-size: 9pt; margin: 10px 0 10px;">자바호텔에 오신걸 환영합니다.</div>
-				<div style="display: flex; justify-content: space-between;">
+				<div class="text-modal">자바호텔에 오신걸 환영합니다.</div>
+				<div class="btn-wrapper">
 					<div>
-					<a href="${cpath }/modify"><button
-							style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px; margin-right: 3px;">정보수정</button></a>
+						<a href="${cpath }/modify"><button class="modal-in-btn">정보수정</button></a>
 					</div>
 					<div>
-					<a href="${cpath }/logout"><button
-							style="border: 0; background-color: #f53b57; color: white; width: 150px; height: 40px;">로그아웃</button></a>
+						<a href="${cpath }/logout"><button class="modal-in-btn">로그아웃</button></a>
 					</div>
 				</div>
 			</div>
 		</c:if>
 	</div>
 </div>
-<script src="${cpath }/resources/js/submenu.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+	const open_submenu = document.getElementById('open_submenu');
+	const close_submenu = document.getElementById('close_submenu');
+	const modal = document.querySelector('.modal-login');
+	
+	open_submenu.onclick = function() {
+		modal.classList.remove('hidden');
+		$("html, body").addClass("not_scroll");
+	}
+	
+	close_submenu.onclick = function() {
+		modal.classList.add('hidden');
+		$("html, body").removeClass("not_scroll");
+	}
+</script>
