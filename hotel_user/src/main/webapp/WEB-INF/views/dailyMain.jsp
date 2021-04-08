@@ -25,6 +25,7 @@
 	    }
 	}
 	
+	
 .gallery_table {
 	width: 1200px;
 	table-layout: fixed;
@@ -102,7 +103,6 @@
 	outline: none;
 	font-weight: bold;
 	color: #ffffff;
-	cursor: pointer;
 	text-indent: 60px;
 }
 
@@ -144,7 +144,8 @@ input::placeholder {
 }
 
 .top {
-	margin-bottom: 24%;
+	margin-bottom: 28%;
+	position: absolute;
 }
 
 .main-input {
@@ -172,6 +173,11 @@ input::placeholder {
 
 .section-blank2 {
 	height: 100px;
+}
+
+.section-blank3 {
+	height: 1000px;
+	max-height: 40%;
 }
 
 hidden {
@@ -350,18 +356,18 @@ table {
 			</div>
 			<div class="section-blank"></div>
 			<div class="main-text">
-			<div class="main-text-inner">
-				<div data-aos="flip-left" data-aos-duration="1000" style="font-family: 'Lobster', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center;">stay,</div>
-				<div data-aos="flip-up" data-aos-duration="1000" style="font-family: 'Lobster', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center; margin-left: 15px;">what you want</div>
+				<div class="main-text-inner">
+					<div data-aos="flip-left" data-aos-duration="1000" style="font-family: 'Lobster', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center;">stay,</div>
+					<div data-aos="flip-up" data-aos-duration="1000" style="font-family: 'Lobster', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center; margin-left: 15px;">what you want</div>
+				</div>
 			</div>
-		</div>
 			<div class="section-blank2"></div>
 			<div class="main-input" data-aos="fade-up" data-aos-duration="500">
 				<input class="main_input_search" id="search" onkeyup="filter()" type="text" placeholder="">
 				<div class="search_result">
-					<div class="hotel-list hotel-list-scroll">
+					<div class="hotel-list hotel-list-scroll"  style="z-index: 1500;">
 						<c:forEach var="dto" items="${map.list}">
-							<div class="hotel-section hidden">
+							<div class="hotel-section hidden"><!-- hidden -->
 								<div class="hotel-section-info" style="width: 420px; background-color: #b2bec3; background-color: rgba( 255, 255, 255, 0.5 ); margin: 0 auto;">
 									<a href="${cpath }/hotelView/${dto.HO_NAME}/">
 									<div>
@@ -382,9 +388,9 @@ table {
 			</div>
 		</div>
 
+		<div class="section-blank3"></div>
 
-
-		<div class="section" style="margin-top: 27%;">
+		<div class="section show-hotel" style="position: relative;">
 			<div class="gallery_table" style="margin: 0 auto; align-content: center;">
 				<p style="text-align: center;">
 					<strong>OUR HOTELS</strong>
