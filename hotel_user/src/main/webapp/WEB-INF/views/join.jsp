@@ -89,6 +89,7 @@ margin-top: 35px;
 					
 						
 						<div><input class="join-input" id="name" name="cu_name" type="text" placeholder="이름" required></div>
+						<p id="name_check"></p>
 					
 						<div class="join-gender">
 							<span style="width: 202px; text-align: left; ">성별</span>
@@ -207,6 +208,28 @@ $('#userpw2').blur(function() {
 		$('#pw_check2').css('color', 'red');
 		$('#userpw2').select();	
 	}
+});
+// 이름 정규식
+$('#name').blur( function () {
+	var name = document.getElementById('name').value;
+	var name_check = document.getElementById('name_check');
+
+	var reg = /^[가-힣|a-z|A-Z|0-9|]+$/;
+
+
+
+	if($('#name').val() == ''){
+		$('#name_check').text('필수 정보 입니다');
+		$('#name_check').css('color', 'red');
+		$('#name').focus();
+		return;
+	}else if(true === reg.test(name))  {
+		name_check.innerText = '';
+	}else {
+		name_check.innerText = '한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)';
+		$('#name_check').css('color', 'red');
+		$('#name').select();	
+	 }
 });
 	
 
