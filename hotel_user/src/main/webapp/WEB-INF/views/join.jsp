@@ -181,6 +181,7 @@ $('#userpw').blur( function () {
 	if($('#userpw').val() == ''){
 		$('#pw_check').text('비빌번호를 입력하세요');
 		$('#pw_check').css('color', 'red');
+		$('#userpw').focus();
 		return;
 	}else if(true === reg.test(pw))  {
 		pw_check.innerText = '';
