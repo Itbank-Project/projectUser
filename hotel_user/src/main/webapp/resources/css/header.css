@@ -14,7 +14,7 @@ body {
 }
 
 .nav-content-wrapper {
-	width: 1000px;
+	width: 1590px;
 	max-width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -45,14 +45,14 @@ body {
 
 .modal-login {
     position: fixed;
-    top: 50px;
+    top: 5px;
     left: 110px;
     width: 100%;
     height: 100%;
     display: flex;
-    margin-left: 53%;
+    margin-left: 69%;
     z-index: 10;
-    opacity: 0.9;
+    /* opacity: 0.9; */
 }
 .modal_content{
     background-color: white;
