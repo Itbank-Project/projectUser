@@ -30,6 +30,11 @@ public class CalendarService {
 
 		return dao.getOneRoom(map);
 	}
+	
+	// 객실 이미지
+	public List<CalendarDTO> getRoomIMG(String hotelName) {
+		return dao.getIMG(hotelName);
+	}
 
 
 
