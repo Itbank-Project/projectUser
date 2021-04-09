@@ -236,18 +236,14 @@
         <div>
             <h3>객실 선택</h3>
             <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room2.jpg" style="width: 100%;">
-                </div>
+            	<c:forEach var="room" items="${map.roomIMG}">
+	                <div class="mySlides fade">
+	                    <img src="http://182.212.181.172:9000/${room.ro_uploadfile }" style="width: 100%;">
+	                </div>
+            	</c:forEach>
                 <div class="mySlides fade">
                     <img src="${cpath }/resources/img/room3.jpg" style="width: 100%;">
                 </div>
-                <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room4.jpg" style="width: 100%;">
-                </div> 
-                <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room5.jpg" style="width: 100%;">
-                </div> 
             </div>
             
             <div style="text-align: center;">
