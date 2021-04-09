@@ -39,5 +39,9 @@ join hotel on room.ro_ho_name = hotel.ho_name
 			where ho_name = #{hotelName} and room.ro_roomtype=#{roomType} and calendar_date between #{dateStart} and #{dateEnd}
 	</select>
 	
+	<!-- 객실 이미지 -->
+	<select id="getIMG" resultType="calendar" parameterType="string">
+	select ro_uploadfile from room where ro_ho_name= #{hotelName}
+	</select>
 	
 </mapper>
