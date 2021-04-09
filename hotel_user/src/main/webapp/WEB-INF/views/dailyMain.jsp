@@ -5,6 +5,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Train+One&display=swap"
 	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap" rel="stylesheet">
 <style>
 
 @-webkit-keyframes fadein {
@@ -27,7 +31,7 @@
 	
 	
 .gallery_table {
-	width: 1200px;
+	width: 1590px;
 	table-layout: fixed;
 	height: 100%;
 	max-width: 100%;
@@ -46,19 +50,24 @@
 }
 
 .hotel_img {
-	width: 317px;
-	min-height: 317px;
+	width: 384px;
+	min-height: 375px;
 	background-size: cover;
 	background-position: center;
+	border-radius: 10px;
 }
 
 .hotel_text {
+	padding: 10px 0 10px 0;
 	display: table;
-	padding: 16px;
 	width: 100%;
 	height: 100%;
 	text-align: left;
 	vertical-align: middle;
+	border-radius: 10px;
+	color: black;
+	font-size: 15pt;
+	font-weight: bold;
 }
 
 .hotel_title {
@@ -88,28 +97,28 @@
 }
 
 .main_input_search {
-	background-image:url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png);
+	/* background-image:url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png); */
 	background-position: 13px center;
 	background-size: contain;
 	background-repeat: no-repeat;
-	font-size: 18px;
 	background-color: transparent;
-	margin-top: 30px;
-	margin-bottom: 2%;
+	margin-top: -30px;
+	margin-bottom: 5%;
+	
 	border: none;
-	border-bottom: 1px solid #ffffff;
-	width: 500px;
+	border-bottom: 3px solid #f8585b;
+	width: 390px;
 	height: 40px;
 	outline: none;
 	font-weight: bold;
-	color: #ffffff;
-	text-indent: 60px;
+	color: #28cae8;
+	/* text-indent: 60px; */
 }
 
 .main_input_search:focus {
-	background-image: none;
-	background-position: -10px center;
-	text-indent: 0;
+
+	/* background-position: 0px center;
+	text-indent: 0; */
 }
 
 input::placeholder {
@@ -178,6 +187,10 @@ input::placeholder {
 .section-blank3 {
 	height: 1000px;
 	max-height: 40%;
+}
+
+.section-blank4 {
+	height: 50px;
 }
 
 hidden {
@@ -357,13 +370,20 @@ table {
 			<div class="section-blank"></div>
 			<div class="main-text">
 				<div class="main-text-inner">
-					<div data-aos="flip-left" data-aos-duration="1000" style="font-family: 'Lobster', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center;">stay,</div>
-					<div data-aos="flip-up" data-aos-duration="1000" style="font-family: 'Lobster', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center; margin-left: 15px;">what you want</div>
+					<div data-aos="flip-left" data-aos-duration="1000" style="font-family: 'Train One', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center;">stay,</div>
+					<div data-aos="flip-up" data-aos-duration="1000" style="font-family: 'Train One', cursive; color: #f8585b; font-weight: bold; font-size: 50pt; text-align: center; margin-left: 15px;">what you want</div>
 				</div>
 			</div>
 			<div class="section-blank2"></div>
-			<div class="main-input" data-aos="fade-up" data-aos-duration="500">
-				<input class="main_input_search" id="search" onkeyup="filter()" type="text" placeholder="">
+			<div class="main-input" data-aos="fade-up-right" data-aos-duration="500">
+				<div>
+					<div>
+						<input class="main_input_search" id="search" onkeyup="filter()" type="text"
+						placeholder="Where are you going?" style="font-family: 'Black Han Sans', sans-serif; font-size: 21pt;">
+					</div>
+					<div style="background-color: #f8585b; width: 50px; height: 50px; border-radius: 100px; position: relative; margin-left: 450px;
+					top: -85px; align-content: center; justify-content: center;"><img style="width: 28px; margin: 12px 10px 0px 9px;" src="${cpath }/resources/img/main-search-btn.png"></div>
+				</div>
 				<div class="search_result">
 					<div class="hotel-list hotel-list-scroll">
 						<c:forEach var="dto" items="${map.list}">
@@ -390,26 +410,121 @@ table {
 
 		<div class="section-blank3"></div>
 
+		<div class="section" style="position: relative;">
+		
+			<div style="height: 210px; width: 1590px; margin: 0 auto;">
+			
+					<div style="font-family: 'Noto Sans KR', sans-serif; font-size: 27pt; font-weight: bold;">지역별 관광지</div>
+					
+					<div>
+						<div style="display: flex; margin-top: 20px;">
+							<div>
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/seoul.jpg">
+									<div style="margin: 15px 228px 0px 15px;">
+										<span><b>서울</b></span>
+										<br>
+										<span>차로 5시간 거리</span>
+									</div>
+								</div>
+							</div>	
+							
+							<div>	
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/daegu.jpg">
+									<div  style="margin: 15px 208px 0px 15px;">
+										<span><b>대구</b></span>
+										<br>
+										<span>차로 1.5시간 거리</span>
+									</div>
+								</div>
+							</div>	
+							
+							<div>	
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/ulsan.jpg">
+									<div  style="margin: 15px 226px 0px 15px;">
+										<span><b>울산</b></span>
+										<br>
+										<span>차로 1시간 거리</span>
+									</div>
+								</div>
+							</div>	
+							
+							<div>	
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/daejeon.jpg">
+									<div  style="margin: 15px 0px 0px 15px;">
+										<span><b>대전</b></span>
+										<br>
+										<span>차로 3.5시간 거리</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div style="display: flex; margin-top: 10px;">
+							<div>
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/busan.jpg">
+									<div style="margin: 15px 225px 0px 15px;">
+										<span><b>부산</b></span>
+										<br>
+										<span>차로 0시간 거리</span>
+									</div>
+								</div>
+							</div>	
+							
+							<div>	
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/incheon.jpg">
+									<div  style="margin: 15px 206px 0px 15px;">
+										<span><b>인천</b></span>
+										<br>
+										<span>차로 5.5시간 거리</span>
+									</div>
+								</div>
+							</div>	
+							
+							<div>	
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/gwangju.jpg">
+									<div  style="margin: 15px 212px 0px 15px;">
+										<span><b>광주</b></span>
+										<br>
+										<span>차로 3.5시간 거리</span>
+									</div>
+								</div>
+							</div>	
+							
+							<div>	
+								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/jeju.jpg">
+									<div  style="margin: 15px 0px 0px 15px;">
+										<span><b>제주</b></span>
+										<br>
+										<span>비행기로 1시간 거리</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+		</div>
+		
 		<div class="section show-hotel" style="position: relative;">
 			<div class="gallery_table" style="margin: 0 auto; align-content: center;">
-				<p style="text-align: center;">
-					<strong>OUR HOTELS</strong>
+				<p style="font-size: 30pt; font-weight: bold; font-family: 'Noto Sans KR', sans-serif; text-align: left;">
+					<strong>Stays</strong>
 				</p>
-				<div class="gallery_container" style="text-align: center;">
+				<div class="gallery_container" style="text-align: left; width: 1600px;">
 					<c:forEach var="map" items="${map.list}">
-						<div class="item_gallery" style="width: 333px; display: inline-block;" data-aos="fade-down" data-aos-duration="1500">
+						<div class="item_gallery" style="padding: 0; margin-right: 25px; margin-bottom: 16px; width: 370px; display: inline-block;" data-aos="fade-down" data-aos-duration="1500">
 							<a href="${cpath }/hotelView/${map.HO_NAME}/" class="item_container">
-								<div class="hotel_img" class="content" style="background-image: url(http://182.212.181.172:9000/${map.HO_UPLOADFILE}); "></div>
-								<div class="hotel_text" style="width: 286px; background-color: #f7f7f7; height: 200px">
-									<p class="hotel_title">
+								<div class="hotel_img" class="content" style="background-image: url(http://182.212.181.172:9000/${map.HO_UPLOADFILE});"></div>
+								<div class="hotel_text" style="width: 286px;">${map.HO_NAME }
+									<%-- <p class="hotel_title">
 										<strong style="font-weight: 600;">"${map.HO_NAME }"</strong>
-									</p>
-									<span class="hotel_body">
+									</p> --%>
+									<%-- <span class="hotel_body">
 										<div class="hotel_des" style="height: 35px;">
 											<span>${map.HO_DESCRIPTION }</span>
 										</div>
 										<button style="cursor: pointer; border-radius: 24px; padding: 6px 24px; background-color: #585858; margin-top:50px; color: white;">자세히보기+</button>
-									</span>
+									</span> --%>
 								</div>
 							</a>
 						</div>
@@ -419,6 +534,7 @@ table {
 		</div>
 	</div>
 	
+	<div class="section-blank4"></div>
 	
 	<!-- 하단 '광고성 정보수신동의' -->
 	<div class="wrap hidden">
@@ -510,20 +626,51 @@ table {
     
     
 	
-	<footer style="height: 90px; color: #919191;">
-		<div style="width: 100%; margin-bottom: 20px;">
-			<div style="border-top: 1px solid #dadada; width: 1200px; margin: 0 auto;"></div>
+	<footer style="height: 100%; color: #919191; background-color: #f7f7f7;">
+		<div style="width: 100%; margin-bottom: 40px;">
+			<div style="border-top: 1px solid #dadada; width: 100%; margin: 0 auto;"></div>
 		</div>
-		<div class="footer" style="width: 1100px; margin: 0 auto;">
-			<div class="footer_section" style="display: flex; text-align: center; align-content: center;">
-				<div class="agreeAd" style="cursor: pointer; margin-right: 10px;">광고성정보수신동의</div>
-				<div class="agreeGps" style="cursor: pointer;">위치정보수신동의</div>
+		<div class="footer" style="width: 1590px; margin: 0 auto;">
+			<div class="footer_section" style="display: flex; margin-bottom: 20px;">
+				
+				<div style="margin-right: 500px; margin-left: 5px;">
+						<div style="font-size: 11pt;"><b>소개</b></div><br>
+						<div style="font-size: 10pt;">JAVA 이용 방법</div><br>
+						<div style="font-size: 10pt;">뉴스룸</div><br>
+						<div style="font-size: 10pt;">투자자 정보</div><br>
+						<div style="font-size: 10pt;">JAVA 플러스</div><br>
+						<div style="font-size: 10pt;">JAVA 비즈니스 프로그램</div><br>
+						<div style="font-size: 10pt;">채용정보</div><br>
+						<div style="font-size: 10pt;">창립자 편지</div><br>
+					</div>
+					
+					<div style="margin-right: 500px;">
+						<div style="font-size: 11pt;"><b>커뮤니티</b></div><br>
+						<div style="font-size: 10pt;">다양성 및 소속감</div><br>
+						<div style="font-size: 10pt;">접근성</div><br>
+						<div style="font-size: 10pt;">구호 인력을 위한 숙소</div><br>
+						<div style="font-size: 10pt;">게스트 추천</div><br>
+						<div style="font-size: 10pt;">JAVA.org</div><br>
+					</div>
+					
+					<div>
+						<div style="font-size: 11pt;"><b>JAVA 지원</b></div><br>
+						<div style="font-size: 10pt;">JAVA 코로나 19 대응 방안</div><br>
+						<div style="font-size: 10pt;">도움말 센터</div><br>
+						<div style="font-size: 10pt;">예약 취소 옵션</div><br>
+						<div style="font-size: 10pt;">JAVA 이웃 민원 지원</div><br>
+						<div style="font-size: 10pt;">신뢰와 안전</div><br>
+						<div class="agreeAd" style="cursor: pointer; font-size: 10pt;">광고성정보수신동의</div><br>
+						<div class="agreeGps" style="cursor: pointer; font-size: 10pt;">위치정보수신동의</div>
+					</div>
 			</div>
-			<div style="height: 20px;"></div>
-			<div>(주) JAVA는 통신판매 중개자로서 통신판매의 당사자가 아니며 상품의 예약, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.</div>
-			<div style="height: 20px;"></div>
-			<div>Copyright ⓒ JAVA All rights reserved.</div>
 		</div>
+			<div style="border-top: 1px solid #dadada; width: 100%; text-align: center;">
+				<div style="height: 40px;"></div>
+				<div style="width: 1590px; margin: 0 auto;">(주) JAVA는 통신판매 중개자로서 통신판매의 당사자가 아니며 상품의 예약, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.</div>
+				<div style="height: 20px;"></div>
+				<div>Copyright ⓒ JAVA All rights reserved.</div>
+			</div>
 		<div style="height: 20px;"></div>
 	</footer>
 	
