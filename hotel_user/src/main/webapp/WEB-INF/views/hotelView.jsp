@@ -238,11 +238,11 @@
             <div class="slideshow-container">
             	<c:forEach var="room" items="${map.roomIMG}">
 	                <div class="mySlides fade">
-	                    <img src="http://182.212.181.172:9000/${room.ro_uploadfile }" style="width: 100%;">
+	                    <img src="http://182.212.181.172:9000/${room.ro_uploadfile }" style="width: 100%; height: 618px;">
 	                </div>
             	</c:forEach>
                 <div class="mySlides fade">
-                    <img src="${cpath }/resources/img/room3.jpg" style="width: 100%;">
+                    <img src="${cpath }/resources/img/room3.jpg" style="width: 100%; height: 618px; ">
                 </div>
             </div>
             
