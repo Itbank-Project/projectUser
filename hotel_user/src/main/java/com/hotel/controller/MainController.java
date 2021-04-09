@@ -191,7 +191,7 @@ public class MainController {
 			response.addCookie(c);	
 			
 			
-			uri = (uri != null) ? uri : "/";
+//			uri = (uri != null) ? uri : "/";
 			System.out.println("메인컨트롤러 uri : " + uri);
 			
 			
@@ -199,6 +199,7 @@ public class MainController {
 			
 			if(login == null) {
 				mav.addObject("msg", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+				mav.addObject("page", "-");
 			}
 			return mav;
 		}
