@@ -103,10 +103,14 @@ public class MainController {
 		String calendar_price = cs.getRoomPrice(map);
 		System.out.println("calendar : " + calendar_price);
 		
+		// 객실 이미지
+		List<CalendarDTO> roomIMG = cs.getRoomIMG(hotelName);
+		System.out.println("이미지 : " + roomIMG.get(0).getRo_uploadfile());
 		
+		map.put("roomIMG", roomIMG);
 		map.put("roomPrice", calendar_price);
-		
 		map.put("dto", dto);
+
 		mav.addObject("map", map);
 		
 		return mav;
