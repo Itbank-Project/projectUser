@@ -357,7 +357,9 @@ table {
     padding: 12px;
 }
 
-
+.section a {
+	color: black;
+}
 </style>
 
 <body style="margin: 0;">
@@ -419,6 +421,7 @@ table {
 					<div>
 						<div style="display: flex; margin-top: 20px;">
 							<div>
+							<a href="https://www.airbnb.co.kr/s/%EC%84%9C%EC%9A%B8/homes?place_id=ChIJzWXFYYuifDUR64Pq5LTtioU&refinement_paths%5B%5D=%2Fhomes&search_type=section_navigation">
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/seoul.jpg">
 									<div style="margin: 15px 228px 0px 15px;">
 										<span><b>서울</b></span>
@@ -426,9 +429,11 @@ table {
 										<span>차로 5시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>	
 							
 							<div>	
+							<a href="https://www.airbnb.co.kr/s/%EB%8C%80%EA%B5%AC/homes?place_id=ChIJ1a3vsrjjZTURMC44oCngkro&refinement_paths%5B%5D=%2Fhomes&search_type=section_navigation">
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/daegu.jpg">
 									<div  style="margin: 15px 208px 0px 15px;">
 										<span><b>대구</b></span>
@@ -436,9 +441,10 @@ table {
 										<span>차로 1.5시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>	
-							
-							<div>	
+							<div>
+							<a href="https://www.airbnb.co.kr/s/%EC%9A%B8%EC%82%B0/homes?place_id=ChIJgd6y4osuZjURATHZM3P6g3A&refinement_paths%5B%5D=%2Fhomes&search_type=section_navigation">	
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/ulsan.jpg">
 									<div  style="margin: 15px 226px 0px 15px;">
 										<span><b>울산</b></span>
@@ -446,9 +452,11 @@ table {
 										<span>차로 1시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>	
 							
-							<div>	
+							<div>
+							<a herf="https://www.airbnb.co.kr/s/%EB%8C%80%EC%A0%84/homes?place_id=ChIJAWZKutdIZTURtdOKmJ3WltE&refinement_paths%5B%5D=%2Fhomes&search_type=section_navigation">
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/daejeon.jpg">
 									<div  style="margin: 15px 0px 0px 15px;">
 										<span><b>대전</b></span>
@@ -456,11 +464,13 @@ table {
 										<span>차로 3.5시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>
 						</div>
 						
 						<div style="display: flex; margin-top: 10px;">
 							<div>
+							<a href="https://www.airbnb.co.kr/s/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_dates%5B%5D=april&flexible_trip_dates%5B%5D=may&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&query=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C&place_id=ChIJNc0j6G3raDURpwhxJHTL2DU&source=structured_search_input_header&search_type=autocomplete_click">
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/busan.jpg">
 									<div style="margin: 15px 225px 0px 15px;">
 										<span><b>부산</b></span>
@@ -468,9 +478,11 @@ table {
 										<span>차로 0시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>	
 							
-							<div>	
+							<div>
+							<a href="https://www.airbnb.co.kr/s/%EC%9D%B8%EC%B2%9C/homes?place_id=ChIJR4ITliVveTURQmG3LJD9N30&refinement_paths%5B%5D=%2Fhomes&search_type=section_navigation">	
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/incheon.jpg">
 									<div  style="margin: 15px 206px 0px 15px;">
 										<span><b>인천</b></span>
@@ -478,9 +490,11 @@ table {
 										<span>차로 5.5시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>	
 							
-							<div>	
+							<div>
+							<a href="https://www.airbnb.co.kr/s/%EA%B4%91%EC%A3%BC/homes?place_id=ChIJr6f1ASOJcTURSPUlAe3S9AU&refinement_paths%5B%5D=%2Fhomes&search_type=section_navigation">
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/gwangju.jpg">
 									<div  style="margin: 15px 212px 0px 15px;">
 										<span><b>광주</b></span>
@@ -488,9 +502,11 @@ table {
 										<span>차로 3.5시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>	
 							
 							<div>	
+							<a href="https://www.airbnb.co.kr/s/%EC%A0%9C%EC%A3%BC/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_dates%5B%5D=april&flexible_trip_dates%5B%5D=may&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&source=structured_search_input_header&search_type=search_query">
 								<div style="display: flex;"><img style="width: 65px; border-radius: 10px;" src="${cpath }/resources/img/jeju.jpg">
 									<div  style="margin: 15px 0px 0px 15px;">
 										<span><b>제주</b></span>
@@ -498,6 +514,7 @@ table {
 										<span>비행기로 1시간 거리</span>
 									</div>
 								</div>
+							</a>
 							</div>
 						</div>
 					</div>
