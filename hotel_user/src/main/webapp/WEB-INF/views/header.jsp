@@ -26,13 +26,13 @@
 <!-- 헤더 파일 -->
 <div class="nav">
 	<div class="nav-inner">
-		<div class="nav-content-wrapper">
+		<div class="nav-content-wrapper" id="headerWidth">
 			<div class="content-left">
 				<div class="hotel-logo"><a href="${cpath }">JAVA</a></div>
 			</div>
 			<div class="content-right">
 				<div>
-					<img id="open_submenu" height="40px" src="https://cdn.dailyhotel.com/ux/nav-short-ic@2x.png">
+					<img id="open_submenu" height="40px" src="${cpath }/resources/img/main-subMenu.png">
 				</div>
 			</div>
 		</div>
@@ -102,4 +102,19 @@
 		modal.classList.add('hidden');
 		$("html, body").removeClass("not_scroll");
 	}
+</script>
+
+<!-- 주소에따라 헤더 넓이 조절 -->
+<script type="text/javascript">
+	var link = document.location.href;
+	var mainAddress = 'http://localhost:8080/java/';
+	var nav = document.getElementById('headerWidth');
+	
+	if(link != mainAddress){
+		nav.style.width = "1000px";
+	} else {
+		nav.style.width = "1590px";
+	}
+	
+	console.log('현재 주소 : ' + link);
 </script>
