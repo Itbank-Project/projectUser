@@ -48,6 +48,9 @@
            text-decoration: none;
             color: inherit;
         }
+	input {
+	text-align: center;
+	}
 </style>
 </head>
 <body>
