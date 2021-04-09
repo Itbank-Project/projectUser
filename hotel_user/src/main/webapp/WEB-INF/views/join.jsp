@@ -59,9 +59,8 @@ margin-top: 35px;
 	text-align: right;
 }
 input {
- 	text-align: center;
+	text-align: center;
 }
-
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -165,8 +164,12 @@ $('#userid').blur(function(){
 				}else {
 					id.innerText = '이미 사용중인 ID입니다.';
 					$('#id_check').css('color', 'red');
-					$('#userid').select();					
-				}
+// 					$('#userid').select();
+					console.log(document.getElementById('userid'));
+					document.getElementById('userid').focus();
+					document.getElementById('userid').select();
+				} 
+				
 			});
 	}
 });
@@ -175,6 +178,13 @@ $('#userid').blur(function(){
 //비밀번호 체크
 
 $('#userpw').blur( function () {
+	
+	if(document.querySelector('#id_check').style.color == 'red') {
+		console.log('pw to id')
+		document.getElementById('userid').select();
+		return;
+	}
+	
 	var pw = document.getElementById('userpw').value;
 	var pw_check = document.getElementById('pw_check');
 
@@ -197,6 +207,7 @@ $('#userpw').blur( function () {
 
 //비밀번호 중복체크
 $('#userpw2').blur(function() {
+	
 	var pw = document.getElementById('userpw').value;
 	var pw2 = document.getElementById('userpw2').value;
 	var pw_check2 = document.getElementById('pw_check2');
@@ -218,7 +229,7 @@ $('#name').blur( function () {
 	var name = document.getElementById('name').value;
 	var name_check = document.getElementById('name_check');
 
-	var reg = /^[가-힣|a-z|A-Z|]+$/;
+	var reg = /^[가-힣|a-z|A-Z]+$/;
 
 
 
@@ -336,7 +347,7 @@ const authHandler = function (event) {
 	if($('#auth').val() == ''){
 		$('#authMailMsg').text('인증번호를 입력하세요');
 		$('#authMailMsg').css('color', 'red');
-		$('#auth').focus();
+		
 	}else if(userNumber.value != ''){		
 		const url = cpath + '/authCheck/' + userNumber.value + '/';
 		const opt = {
@@ -404,10 +415,10 @@ authMailForm.onclick = authHandler;
 		.then(text => {
 			console.log(text);
 			if(text == '1') {
-// 				alert('회원가입 성공 !!');
+ 				alert('회원가입 성공 !!');
 				location.href = "login";
 			} else {
-// 				alert('회원가입 실패 !!');
+ 				alert('회원가입 실패 !!');
 				location.href = "join";
 			}
 		
@@ -420,4 +431,3 @@ authMailForm.onclick = authHandler;
 </script>
 </body>
 </html>
-
