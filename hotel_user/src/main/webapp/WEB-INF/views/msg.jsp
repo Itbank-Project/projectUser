@@ -11,6 +11,7 @@
 		location.href = '${cpath}/login';
 	}
 	else {
-		location.replace('${cpath}');	// GET으로 새로 요청하면 스프링 컨트롤러가 처리한다
+		/* location.replace('${cpath}'); */	// GET으로 새로 요청하면 스프링 컨트롤러가 처리한다
+		history.go(-1);
 	}
 </script>
