@@ -218,7 +218,7 @@ $('#name').blur( function () {
 	var name = document.getElementById('name').value;
 	var name_check = document.getElementById('name_check');
 
-	var reg = /^[가-힣|a-z|A-Z|0-9|]+$/;
+	var reg = /^[가-힣|a-z|A-Z|]+$/;
 
 
 
@@ -420,3 +420,4 @@ authMailForm.onclick = authHandler;
 </script>
 </body>
 </html>
+
