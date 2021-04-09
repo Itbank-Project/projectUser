@@ -58,6 +58,9 @@ margin-top: 35px;
 	width: 260px;
 	text-align: right;
 }
+input {
+ 	text-align: center;
+}
 
 </style>
 
