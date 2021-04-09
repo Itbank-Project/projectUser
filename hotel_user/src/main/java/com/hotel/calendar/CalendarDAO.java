@@ -14,5 +14,8 @@ public interface CalendarDAO {
 
 	List<CalendarDTO> getOneRoom(HashMap<String, Object> map);
 
+	// 객실 이미지
+	List<CalendarDTO> getIMG(String hotelName);
+
 
 }
