@@ -8,7 +8,7 @@
 	<!-- 예약정보 추가 -->
 	<insert id="insertReservation" parameterType="reservation">
 	insert into reservation (re_indate, re_outdate, re_daycount, re_payment, re_calendar_pk, re_cu_id)
-		values (#{re_indate} , #{re_outdate} , #{re_daycount}, #{re_payment}, #{re_calendar_pk}, #{re_cu_id})
+		values (to_date(#{re_indate},'YYYY-MM-DD') , to_date(#{re_outdate},'YYYY-MM-DD') , #{re_daycount}, #{re_payment}, #{re_calendar_pk}, #{re_cu_id})
 	</insert>
 	
 	<!-- 마지막 예약번호 불러오기 -->
