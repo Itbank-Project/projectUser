@@ -192,14 +192,19 @@ public class MainController {
 			
 			
 //			uri = (uri != null) ? uri : "/";
-			System.out.println("메인컨트롤러 uri : " + uri);
 			
 			
+			if(uri != null) {
 			mav.setViewName(login != null ? "redirect:" + URLEncoder.encode(uri, "UTF-8").replace("%2F", "/").replace("+", " ") : "msg");
+			System.out.println("redirect:" + URLEncoder.encode(uri, "UTF-8").replace("%2F", "/").replace("+", " "));
+			} else {
+				mav.setViewName("redirect:/");	
+			}
 			
 			if(login == null) {
 				mav.addObject("msg", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 				mav.addObject("page", "-");
+				
 			}
 			return mav;
 		}
