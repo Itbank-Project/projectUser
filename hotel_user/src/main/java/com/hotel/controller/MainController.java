@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
@@ -195,16 +194,22 @@ public class MainController {
 			if(uri != null) {
 				if(login != null) {
 					mav.setViewName("redirect:" + URLEncoder.encode(uri, "UTF-8").replace("%2F", "/").replace("+", " "));
+				} else {
+					mav.addObject("page", uri);
+					mav.addObject("msg", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+					mav.setViewName("msg");
 				}
 			}
 			
-			if(login == null) {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.'); history.go(-1);</script>");
-				out.flush();
-			} else {
-				mav.setViewName("redirect:/");
+			else if(uri == null) {
+				if(login == null) {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');</script>");
+					out.flush();
+				} else {
+					mav.setViewName("redirect:/");
+				}
 			}
 			return mav;
 		}
