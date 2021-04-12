@@ -106,8 +106,8 @@
 
 <!-- 주소에따라 헤더 넓이 조절 -->
 <script type="text/javascript">
-	var link = document.location.href;
-	var mainAddress = 'http://localhost:8080/java/';
+	var link = document.location.pathname;
+	var mainAddress = '${cpath}/';
 	var nav = document.getElementById('headerWidth');
 	
 	if(link != mainAddress){
@@ -117,4 +117,5 @@
 	}
 	
 	console.log('현재 주소 : ' + link);
+	console.log('현재 주소 : ' + mainAddress);
 </script>
