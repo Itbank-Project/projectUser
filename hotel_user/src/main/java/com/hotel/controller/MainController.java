@@ -188,23 +188,21 @@ public class MainController {
 			boolean flag = (storeid != null) && (session.getAttribute("login") != null);
 			
 			c.setMaxAge(flag ? 60 * 60 * 24 * 100 : 0);	
-			response.addCookie(c);	
-			
-			
-//			uri = (uri != null) ? uri : "/";
-			
+			response.addCookie(c);
 			
 			if(uri != null) {
-			mav.setViewName(login != null ? "redirect:" + URLEncoder.encode(uri, "UTF-8").replace("%2F", "/").replace("+", " ") : "msg");
-			System.out.println("redirect:" + URLEncoder.encode(uri, "UTF-8").replace("%2F", "/").replace("+", " "));
-			} else {
-				mav.setViewName("redirect:/");	
+				if(login != null) {
+					mav.setViewName("redirect:" + URLEncoder.encode(uri, "UTF-8").replace("%2F", "/").replace("+", " "));
+				}
 			}
 			
 			if(login == null) {
-				mav.addObject("msg", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
-				mav.addObject("page", "-");
-				
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.'); history.go(-1);</script>");
+				out.flush();
+			} else {
+				mav.setViewName("redirect:/");
 			}
 			return mav;
 		}
