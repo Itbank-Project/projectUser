@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -173,7 +175,7 @@ public class MainController {
 	
 	// 로그인 (쿠키)
 		@PostMapping("login")
-		public ModelAndView login(MemberDTO dto, HttpServletRequest request, HttpServletResponse response, HttpSession session, String uri) throws UnsupportedEncodingException {
+		public ModelAndView login(MemberDTO dto, HttpServletRequest request, HttpServletResponse response, HttpSession session, String uri) throws IOException {
 			ModelAndView mav = new ModelAndView();
 			
 			String userid = dto.getCu_id();
