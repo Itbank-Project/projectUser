@@ -109,11 +109,14 @@
 	var link = document.location.pathname;
 	var mainAddress = '${cpath}/';
 	var nav = document.getElementById('headerWidth');
+	var modalLogin = document.querySelector('.modal-login');
 	
 	if(link != mainAddress){
 		nav.style.width = "1000px";
+		modalLogin.style.margin = "0 0 0 53%";
 	} else {
 		nav.style.width = "1590px";
+		modalLogin.style.margin = "0 0 0 69%";
 	}
 	
 	console.log('현재 주소 : ' + link);
