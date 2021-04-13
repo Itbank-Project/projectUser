@@ -377,7 +377,7 @@ table {
 				</div>
 			</div>
 			<div class="section-blank2"></div>
-			<div class="main-input" data-aos="fade-up-right" data-aos-duration="500">
+			<div class="main-input" data-aos="zoom-in" data-aos-duration="500">
 				<div>
 					<div>
 						<input class="main_input_search" id="search" onkeyup="filter()" type="text"
@@ -529,7 +529,7 @@ table {
 				</p>
 				<div class="gallery_container" style="text-align: left; width: 1600px;">
 					<c:forEach var="map" items="${map.list}">
-						<div class="item_gallery" style="padding: 0; margin-right: 25px; margin-bottom: 16px; width: 370px; display: inline-block;" data-aos="fade-down" data-aos-duration="1500">
+						<div class="item_gallery" style="padding: 0; margin-right: 25px; margin-bottom: 16px; width: 370px; display: inline-block;">
 							<a href="${cpath }/hotelView/${map.HO_NAME}/" class="item_container">
 								<div class="hotel_img" class="content" style="background-image: url(http://182.212.181.172:9000/${map.HO_UPLOADFILE});"></div>
 								<div class="hotel_text" style="width: 286px;">${map.HO_NAME }
