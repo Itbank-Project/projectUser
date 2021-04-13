@@ -315,6 +315,14 @@
             			<br>주차가능<br>
            			</li>
            		</c:if> 
+           		
+           		<c:if test="${not empty map.dto.ho_pool }">
+           			<li>
+            			<img src="${cpath }/resources/img/18.png" width="70px" height="70px">
+            			<br>수영가능<br>
+           			</li>
+           		</c:if>
+           		
             </ul>
         </div>
 
